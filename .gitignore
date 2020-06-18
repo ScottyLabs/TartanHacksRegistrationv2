@@ -1,0 +1,15 @@
+.env# Project
+db/
+node_modules/
+semantic/
+
+# Output
+app/client/build/
+
+# macOS
+.DS_Store
+.python-version
+
+# Drive API credentials
+credentials.json
+token.json

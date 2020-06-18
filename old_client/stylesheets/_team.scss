@@ -1,0 +1,16 @@
+#team {
+  text-align: center;
+  .title {
+    padding-top: 24px;
+  }
+  .team.title {
+    color: $primary;
+  }
+  p {
+    text-align: center;
+    margin: 12px;
+  }
+  .subheader {
+    word-wrap: break-word;
+  }
+}

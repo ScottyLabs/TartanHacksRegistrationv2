@@ -1,0 +1,63 @@
+<div id="sidebar"
+     ng-class="{open: showSidebar}">
+  <div ui-sref-active="inactive" ui-sref="app.dashboard"
+       class="item logo">
+    <img src="assets/images/sidebar-logo.svg">
+  </div>
+
+<!--  <div ui-sref-active="inactive"
+       class="item">
+    Home
+	</div> -->
+
+  <div ui-sref-active="inactive"
+       ui-sref="app.dashboard"
+       class="item"
+       ng-show="!currentUser.admin">
+    Register
+  </div>
+
+<!--
+  <div
+      ui-sref-active="inactive"
+      ui-sref="app.team"
+      ng-show="!currentUser.status.declined"
+      class="item">
+      Team
+  </div> 
+-->
+
+  <div ng-show="currentUser.verified">
+
+    <div
+      ui-sref-active="inactive"
+      ui-sref="app.admin.stats"
+      class="item"
+      ng-show="currentUser.admin">
+      Admin
+    </div>
+
+  </div>
+
+  <!-- <div ui-sref-active="inactive"
+       class="item">
+    FAQ
+  </div> -->
+
+  <!-- <div ui-sref-active="inactive"
+       class="item">
+    Schedule
+  </div> -->
+
+  <div class="item"
+       ng-click="logout()">
+    Logout
+  </div>
+ 
+</div>
+
+<div class="tab"
+  ng-click="toggleSidebar()">
+  <img ng-show="!showSidebar" src="assets/images/sidebar-logo.svg" />
+  <span class="close" ng-show="showSidebar">&#x2715</span>
+</div>

@@ -1,0 +1,75 @@
+#login {
+  height: 100%;
+  width: 100%;
+  background-color: $login-bg-color;
+  background: $login-bg;
+  background-size: cover;
+  overflow: hidden;
+  input::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+  }
+
+
+  > .container {
+    position: relative;
+    top: 50%;
+
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    > .content {
+      max-width: 320px;
+      margin: 0 auto;
+
+      .logo {
+        max-width: 250px;
+        margin: .1rem auto .1rem auto;
+        img {
+          width: 250px;
+          height: 125px;
+        }
+      }
+
+      .divider {
+        margin: 0.5rem 0;
+      }
+
+      .field {
+        margin: 0 0 0.5rem;
+      }
+
+      .button {
+        color: $primary;
+        font-family:  $font-body;
+        &.login {
+          background: $login-color;
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+        }
+        &.register {
+          background: $register-color;
+          margin-top: 0.5rem;
+        }
+      }
+
+      .forgot {
+        text-align: center;
+      }
+
+      a {
+        color: $secondary;
+      }
+      a:hover {
+        color: $primary;
+      }
+
+    }
+    #footer {
+      text-align: center;
+      background: $login-bg;
+      margin: 1rem 0;
+    }
+  }
+
+}

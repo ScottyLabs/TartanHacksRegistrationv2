@@ -1,0 +1,86 @@
+#dashboard {
+  .status {
+    text-align: center;
+    p {
+      text-align: left;
+      font-size: 1rem;
+    }
+    .deadline {
+      text-align: center;
+      margin: 0.5rem;
+    }
+    .button {
+      margin-top: 12px;
+      color: $secondary;
+      background: $primary;
+      font-family: $font-body;
+    }
+    .header {
+      font-size: 1.2em;
+    }
+    .small {
+      font-size: 1.5em;
+    }
+    .state {
+      text-align: center;
+      padding: 12px 24px;
+      margin-bottom: 1rem;
+      color: white;
+      font-size: 1.3em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+
+      &.unverified {
+        background: $status-unverified-color;
+      }
+
+      &.incomplete {
+        background: $status-incomplete-color;
+        color: white;
+      }
+
+      &.submitted {
+        background: $status-submitted-color;
+      }
+
+      &.waitlist {
+        background: $status-waitlist-color;
+      }
+
+      &.admitted {
+        background: $status-admitted-color;
+      }
+
+      &.confirmed {
+        background: $status-confirmed-color;
+      }
+
+      &.checked.in {
+        background: $status-checkedin-color;
+      }
+
+      &.declined {
+        background: $status-declined-color;
+      }
+    }
+  }
+
+  .segment {
+    padding: 36px 36px 12px 36px;
+    background-color: $secondary;
+  }
+
+  .description {
+    margin-bottom: 24px;
+
+    p > strong {
+      font-weight: 700;
+    }
+
+    .markdown {
+      text-align: left;
+      margin-bottom: 24px;
+    }
+  }
+}

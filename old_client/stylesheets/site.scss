@@ -1,0 +1,200 @@
+@import "branding";
+@import "custom";
+
+$font-body: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+$font-header: "Montserrat", "Helvetica Neue", "Helvetica", sans-serif;
+
+// Login screen variables
+$login-bg-color: $secondary;
+$login-color: $secondary;
+$register-color: $tertiary;
+
+$status-unverified-color: rgb(82, 82, 82);
+$status-incomplete-color: $quaternary;
+$status-submitted-color: $quaternary;
+$status-admitted-color: $primary;
+$status-confirmed-color: $quaternary;
+$status-checkedin-color: $quaternary;
+$status-waitlist-color: $tertiary;
+$status-declined-color: $tertiary;
+$status-rejected-color: red; // Not used
+
+// Sidebar variables
+$sidebar-color: $primary;
+$sidebar-width: 265px;
+$sidebar-transition-time: 0.5s;
+$sidebar-tab-size: 55px;
+
+// Page variables
+$page-header-color: $secondary;
+
+$brand-primary: $primary;
+$brand-secondary: $secondary;
+$brand-tertiary: $tertiary;
+
+$background-image: url(../assets/images/redbackground.png);
+
+@mixin transform($transforms) {
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin transition-duration($duration) {
+  -webkit-transition-duration: $duration;
+  transition-duration: $duration;
+}
+
+@import "login";
+@import "base";
+@import "sidebar";
+@import "page";
+@import "dashboard";
+@import "application";
+@import "verify";
+@import "team";
+@import "admin";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 1.02em;
+}
+
+body {
+  margin: 0;
+  font-family: $font-body;
+  font-weight: 300;
+
+  > .container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#footer {
+  position: relative;
+  margin: auto;
+}
+
+/**
+ * SweetAlert Overrides
+ */
+.sweet-alert {
+  font-family: $font-body;
+}
+
+/**
+ * Semantic-UI Overrides for squareishness
+ */
+.ui.segment {
+  border-radius: 0;
+  box-shadow: none;
+  &.primary {
+    background-color: $primary;
+  }
+}
+input {
+  border-radius: 0 !important;
+}
+.ui.button {
+  border-radius: 0;
+  &.primary {
+    background: $primary;
+    &:hover {
+      background: lighten($primary, 3%);
+    }
+    &:active {
+      background: darken($primary, 3%);
+    }
+  }
+  &.secondary {
+    background: $secondary;
+    &:hover {
+      background: lighten($secondary, 3%);
+    }
+    &:active {
+      background: darken($secondary, 3%);
+    }
+    &:focus {
+      background: $secondary;
+    }
+  }
+}
+
+.ui.form .surround-fields {
+  background-color: $secondary;
+  padding: 20px;
+}
+a {
+  color: #ffffff;
+  background-color: $primary;
+  padding: 2px 10px 2px 10px;
+}
+a:hover {
+  color: $primary;
+  background-color: #ffffff;
+}
+
+.ui.form .field > label {
+  color: $primary;
+}
+.ui.purple.button,
+.ui.purple.buttons .button {
+  color: $secondary;
+  background-color: $primary;
+}
+.ui.purple.button:hover,
+.ui.purple.buttons:hover .button:hover {
+  background-color: lighten($primary, 10%);
+}
+.ui.form select {
+  font-family: $font-body;
+  font-weight: 400;
+  height: 2.5em;
+}
+
+fieldset {
+  padding: 0;
+  border: none;
+}
+
+.ui.search > .results {
+  width: 100%;
+}
+// @import 'animation';
+
+#email,
+#forgot-email,
+#password,
+#login-password,
+#register {
+  font-family: $font-body;
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+#mentor-line {
+  margin-top: 10px;
+}
+
+#mentor-line a {
+  color: #FFFFFF;
+  // position: absolute;
+  // bottom: 15%;
+  // left: 50%;
+  margin-left: 30px;
+  padding: 2px 10px;
+  text-align: center;
+}
+
+#mentor-line:hover a {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.required {
+  color: red;
+}

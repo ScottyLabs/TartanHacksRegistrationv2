@@ -1,0 +1,170 @@
+<div class="page">
+  <div class="divided title">
+    Confirmation
+  </div>
+
+  <div class="ui stackable page grid">
+    <div class="column">
+
+      <div class="ui form">
+
+        <div class="divided title">Basic Details</div>
+
+        <div class="surround-fields">
+
+          <fieldset ng-disabled="pastConfirmation">
+
+            <div class="field">
+              <label> Dietary Restrictions </label>
+
+              <p>
+                If your restriction is not included here, please let us know in the additional notes at the bottom.
+              </p>
+              <p>
+                We'll make sure you get fed :)
+              </p>
+
+            </div>
+
+            <div class="inline fields">
+              <div class="field" ng-repeat="(key, value) in dietaryRestrictions">
+
+                <div class="ui checkbox">
+                  <input type="checkbox" ng-model="dietaryRestrictions[key]" />
+                  <label>{{key}}</label>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="field">
+              <label> Shirt Size  <span class="required">*</span></label>
+              <p>
+                Let's get you some swag!
+              </p>
+              <select name="shirt" ng-model="user.confirmation.shirtSize" required>
+                <option value="">Shirt Size</option>
+                <option value="XS">Unisex X-Small</option>
+                <option value="S">Unisex Small</option>
+                <option value="M">Unisex Medium</option>
+                <option value="L">Unisex Large</option>
+                <option value="XL">Unisex X-Large</option>
+                <option value="XXL">Unisex XX-Large</option>
+              </select>
+            </div>
+            
+            <div class="field">
+              <label>
+                Will you be needing hardware?
+              </label>
+              <div class="ui checkbox">
+                <input type="checkbox" ng-model="user.confirmation.wantsHardware">
+                <label> Yes, I would like to use hardware in my hack. </label>
+              </div>
+            </div>
+
+            <div class="field" ng-show="user.confirmation.wantsHardware">
+              <label>
+                What kind of hardware would be useful for you?
+              </label>
+              <p>
+                We will have a hardware checkout, and we'll try our best to provide things that would be useful to you -
+                however, we can't guarantee everything. We will publish a list of available hardware closer to the day of
+                the event.
+              </p>
+              <input type="text" ng-model="user.confirmation.hardware">
+            </div>
+            
+          </div>
+          
+          <br>
+          <br>
+
+          <div class="divided title">Legal</div>
+          <div class="surround-fields">
+          <div class="field">
+            <label> Liability Waiver  <span class="required">*</span></label>
+            <p>
+              <a target="_blank" href="../../assets/docs/THLiabilityWaiver.pdf">
+                Liability Waiver
+              </a>
+            </p>
+            <p>
+              For legal reasons, please read and accept the terms of our liability waiver. Again, you <strong> must
+              </strong> be 18 years or older or a CMU undergraduate by the day of the event, or <strong> we will refuse
+                you admission at the door. We will be checking ID. </strong>
+            </p>
+            <p>
+              By writing my name below, I affirm that I have read and accepted the terms of the liability waiver above,
+              and will be either a CMU undergraduate or 18 years or older at the time of the event.
+            </p>
+            <input type="text" name="signatureLiabilityWaiver" placeholder="Your Full Legal Name"
+              ng-model="user.confirmation.signatureLiability">
+          </div>
+
+          <div class="field">
+            <label> Photo Release <span class="required">*</span></label>
+            <p>
+              <a target="_blank" href="../../assets/docs/THPhotoRelease.pdf">
+                Photo Release
+              </a>
+            </p>
+            <p>
+              Signing this photo release means if we take photos or photos of you, we can share it with the world.
+            </p>
+            <p>
+              By writing my name below, I affirm that I have read and accepted the terms of the photo release above.
+            </p>
+            <input type="text" name="signaturePhotoRelease" placeholder="Your Full Legal Name"
+              ng-model="user.confirmation.signaturePhotoRelease">
+          </div>
+
+          <div class="field">
+            <label> Code of Conduct  <span class="required">*</span></label>
+            <p>
+              <a target="_blank" href="../../assets/docs/THCodeOfConduct.pdf">
+                Hacker Code of Conduct
+              </a>
+            </p>
+            <p>
+              It is extremely important to us that attendees follow a set of guidelines to make the event fun for
+              everyone involved. Please read through and make sure you understand what we will be expecting of you.
+            </p>
+            <p>
+              By writing my name below, I affirm that I have read and will abide by the code of conduct detailed above.
+            </p>
+            <input type="text" name="signatureCodeOfConduct" placeholder="Your Full Legal Name"
+              ng-model="user.confirmation.signatureCodeOfConduct">
+          </div>
+          </div>
+          <br>
+          <br>
+
+          <div class="divided title">Everything Else</div>
+
+          <div class="surround-fields">
+
+          <div class="field">
+            <label>
+              Additional Notes
+            </label>
+            <p>
+              If there's anything else you need to let us know, tell us here!
+            </p>
+            <textarea ng-model="user.confirmation.notes"></textarea>
+          </div>
+        </div>
+
+          <br>
+
+          <div class="field" ng-hide="regIsClosed">
+            <button type="submit" class="fluid ui purple button" ng-click="submitForm()">
+              Submit
+            </button>
+          </div>
+        
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

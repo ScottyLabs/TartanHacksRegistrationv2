@@ -1,0 +1,43 @@
+#base {
+  background: $sidebar-color;
+  width: 100%;
+  height: 100%;
+
+  > .content {
+    width: 100%;
+    min-height: 100%;
+    padding-left: $sidebar-width;
+    background: white;
+    box-shadow: 0 0 8px rgba(0,0,0,.4);
+
+    transition: padding-left $sidebar-transition-time;
+
+    > .container {
+      padding: 36px;
+      background: $background-image;
+      background-size: cover;
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #base > .content {
+    padding-left: 0;
+    > .container {
+      padding: 0;
+    }
+  }
+}
+
+.danger-button {
+  background-color: #dd6b55;
+}
+
+.danger-button:hover {
+  background-color: #d9593f !important;
+}

@@ -1,0 +1,229 @@
+<div class="ui top attached segment">
+
+  <div class="ui header">
+    {{selectedUser.profile.name ? selectedUser.profile.name : selectedUser.email}}
+    <span ng-show="selectedUser.admin">
+      (Admin)
+    </span>
+  </div>
+
+</div>
+
+<div class="ui botom attached segment">
+
+  <div>
+    <p>
+      <strong> Status: </strong>
+      <span class="ui label">
+        {{selectedUser.status.name.toUpperCase()}}
+      </span>
+    </p>
+    <p>
+      <strong> Admitted by: </strong> {{selectedUser.status.admittedBy ? selectedUser.status.admittedBy : 'N/A'}}
+    </p>
+  </div>
+
+  <div class="ui divider"></div>
+  <div class="ui form">
+    <fieldset ng-disabled="false">
+      <div class="ui header">
+        Application
+      </div>
+
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" name="email" ng-model="user.email" placeholder="Email Address">
+      </div>
+
+      <div class="field">
+        <label>Full Name </label>
+        <input type="text" name="name" ng-model="user.profile.name" placeholder="Full Name">
+      </div>
+
+      <div class="field" ng-show="isCmuStudent === true">
+        <label> School </label>
+        <input class="ui input" disabled="disabled" value="Carnegie Mellon University">
+      </div>
+      <div class="field" ng-show="!isCmuStudent && autoFilledSchool">
+        <label> School </label>
+        <input class="ui input" disabled="disabled" ng-show="autoFilledSchool" ng-model="user.profile.school">
+      </div>
+      <div class="field" ng-show="!isCmuStudent && !autoFilledSchool">
+        <label> School </label>
+        <div id="school" class="ui search">
+          <div class="ui input">
+            <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">
+          </div>
+          <div class="results"></div>
+        </div>
+      </div>
+      <div class="field" ng-show="isCmuStudent === true">
+        <label> College Within CMU </label>
+        <select name="school" ng-model="user.profile.school" placeholder="College Within CMU">
+          <option value="">College Within CMU</option>
+          <option value="Carnegie Mellon University - SCS">SCS</option>
+          <option value="Carnegie Mellon University - CIT">CIT</option>
+          <option value="Carnegie Mellon University - CFA">CFA</option>
+          <option value="Carnegie Mellon University - Dietrich">Dietrich</option>
+          <option value="Carnegie Mellon University - MCS">MCS</option>
+          <option value="Carnegie Mellon University - Tepper">Tepper</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Graduation Year </label>
+        <select name="year" ng-model="user.profile.graduationYear" placeholder="Graduation Year">
+          <option value="">Graduation Year</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Gender </label>
+        <select name="gender" ng-model="user.profile.gender" placeholder="gender">
+          <option value="">Gender</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+          <option value="N">I prefer not to answer.</option>
+        </select>
+      </div>
+      <div class="field">
+        <label> Phone Number </label>
+        <input type="tel" name="phone" ng-model="user.profile.phoneNumber" placeholder="(123) - 555 - 1234" required>
+      </div>
+
+      <div class="field">
+        <label> Hackathon Experience (optional) </label>
+        <select name="gender" ng-model="user.profile.experience">
+          <option value="">Number of hackathons attended</option>
+          <option value="0">0</option>
+          <option value="1~3">1-3</option>
+          <option value="4+">4+</option>
+        </select>
+      </div>
+      <div class="field">
+        <label> What are you studying? (optional) </label>
+        <input type="text" name="study" placeholder="Computer Science, Product Design, Basket Weaving, etc."
+          ng-model="user.profile.major">
+      </div>
+
+      <div class="field">
+        <label> Github (optional) </label>
+        <input type="text" name="github" placeholder="https://github.com/foobar" ng-model="user.profile.github">
+      </div>
+
+      <br>
+
+      <div class="field">
+        <div ng-click="updateProfile()" class="ui positive right labeled icon button">
+          Update Profile
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+
+    </fieldset>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="ui form">
+
+    <fieldset ng-disabled="false">
+
+      <div class="ui header">
+        Confirmation
+      </div>
+
+      <div class="field">
+        <label> Dietary Restrictions </label>
+        <input type="text" ng-model="selectedUser.confirmation.dietaryRestrictions" />
+      </div>
+
+      <div class="field">
+        <label> Shirt Size </label>
+        <input type="text" ng-model="selectedUser.profile.shirtSize" />
+      </div>
+
+      <div class="ui divider"></div>
+
+      <div class="field">
+        <label>
+          Needs Hardware
+        </label>
+        <div class="ui checkbox">
+          <input type="checkbox" ng-model="selectedUser.confirmation.wantsHardware">
+          <label> Yup, I need hardware </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>
+          Hardware
+        </label>
+        <input type="text" ng-model="selectedUser.confirmation.hardware">
+      </div>
+
+      <div class="ui divider"></div>
+
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" name="name" ng-model="selectedUser.confirmation.address.name">
+      </div>
+
+      <div class="field">
+        <label> Address Line 1 - Street address, P.O. box, company name, c/o </label>
+        <input type="text" name="addressLine1" ng-model="selectedUser.confirmation.address.line1">
+      </div>
+
+      <div class="field">
+        <label> Address Line 2 - Apartment, suite, unit, building, floor, etc. </label>
+        <input type="text" name="addressLine2" ng-model="selectedUser.confirmation.address.line2">
+      </div>
+
+      <div class="four fields">
+        <div class="field">
+          <label> City </label>
+          <input type="text" name="city" ng-model="selectedUser.confirmation.address.city">
+        </div>
+        <div class="field">
+          <label> State/Province/Region </label>
+          <input type="text" name="state" ng-model="selectedUser.confirmation.address.state">
+        </div>
+        <div class="field">
+          <label> ZIP </label>
+          <input type="text" name="zip" ng-model="selectedUser.confirmation.address.zip">
+        </div>
+        <div class="field">
+          <label> Country </label>
+          <input type="text" name="country" ng-model="selectedUser.confirmation.address.country">
+        </div>
+      </div>
+
+      <div class="field">
+        <label> Receipt </label>
+        <input type="url" ng-model="selectedUser.confirmation.receipt" />
+      </div>
+
+      <div class="field">
+        <label> Additional Notes </label>
+        <textarea ng-model="selectedUser.confirmation.notes"></textarea>
+      </div>
+
+      <br>
+
+      <div class="field">
+        <div ng-click="updateConfirmation()" class="ui positive right labeled icon button">
+          Update Confirmation Details
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+
+    </fieldset>
+
+  </div>
+</div>

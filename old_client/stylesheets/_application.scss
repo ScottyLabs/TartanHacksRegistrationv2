@@ -1,0 +1,28 @@
+#application {
+  .title {
+    margin: 2rem;
+  }
+  .ui.form .field > label {
+    color: $primary;
+  }
+
+  select,
+  input {
+    font-family: $font-body;
+  }
+  input::placeholder {
+    color: rgba(0, 0, 0, 0.28);
+  }
+
+  .button {
+    color: $secondary;
+    background: $primary;
+    font-family: $font-body;
+  }
+
+  a {
+    color: #FFFFFF;
+    background-color: $primary;
+    padding: 4px 10px 4px 10px;
+  }
+}
