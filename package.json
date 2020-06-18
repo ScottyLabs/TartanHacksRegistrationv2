@@ -39,9 +39,9 @@
     "validator": "^13.1.1"
   },
   "scripts": {
+    "config": "cp .env.config .env",
     "mongo": "mongod --dbpath db",
     "start": "npm run build --prefix client && node app.js",
-    "config": "cp .env.config .env",
     "server": "nodemon app.js",
     "client": "react-scripts start",
     "dev": "npm-run-all -p server client",
