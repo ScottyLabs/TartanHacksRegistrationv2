@@ -1,7 +1,7 @@
 {
-  "name": "tartanhacks-reg",
+  "name": "tartanhacks-registration-system",
   "description": "mern stack registration system",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": "true",
   "proxy": "http://localhost:5000",
   "dependencies": {
@@ -17,27 +17,55 @@
     "jsonwebtoken": "8.5.1",
     "method-override": "^3.0.0",
     "moment": "^2.26.0",
-    "mongoose": "^5.9.18",
+    "mongoose": "^5.9.19",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.4.8",
+    "nodemailer": "^6.4.10",
     "nodemailer-smtp-transport": "^2.7.4",
     "request": "^2.88.2",
     "showdown": "^1.9.1",
     "sweetalert": "^2.1.2",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.3.0",
+    "@testing-library/user-event": "^12.0.2",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typescript": "^3.9.5",
     "underscore": "^1.10.2",
     "validator": "^13.1.1"
   },
   "scripts": {
     "mongo": "mongod --dbpath db",
-    "start": "npm run build --prefix client; node app.js",
+    "start": "npm run build --prefix client && node app.js",
     "config": "cp .env.config .env",
     "server": "nodemon app.js",
-    "client": "npm start --prefix client",
-    "dev": "npm-run-all -p client server"
+    "client": "react-scripts start",
+    "dev": "npm-run-all -p server client",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "node-env-run": "^3.0.2",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

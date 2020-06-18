@@ -1,10 +1,11 @@
-.env# Project
+# dependencies
+.env
 db/
 node_modules/
 semantic/
 
 # Output
-app/client/build/
+client/build/
 
 # macOS
 .DS_Store
@@ -13,3 +14,6 @@ app/client/build/
 # Drive API credentials
 credentials.json
 token.json
+
+# misc
+npm-debug.log*

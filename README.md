@@ -72,7 +72,7 @@ Edit the configuration file in `.env` for your setup, and then run the applicati
 $ gulp server
 ```
 
-Once the server is running, you can use the app by going to [localhost:5000](http://localhost:5000)
+Once the server is running, you can use the app by going to [localhost:3000](http://localhost:3000)
 
 ### Troubleshooting
 

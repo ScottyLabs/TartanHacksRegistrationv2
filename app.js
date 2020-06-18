@@ -9,7 +9,7 @@ var methodOverride  = require('method-override');
 const morgan = require('morgan');
 
 var mongoose        = require('mongoose');
-var port            = process.env.PORT || 5000;
+var port            = process.env.SERVER_PORT || 5000;
 var database        = process.env.DATABASE || process.env.MONGODB_URI || "mongodb://localhost:27017";
 
 var settingsConfig  = require('./config/settings');
