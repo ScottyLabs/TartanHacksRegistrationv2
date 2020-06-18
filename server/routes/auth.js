@@ -1,7 +1,7 @@
-var _         = require('underscore');
+const _         = require('underscore');
 
-var SettingsController = require('../controllers/SettingsController');
-var UserController = require('../controllers/UserController');
+const SettingsController = require('../controllers/SettingsController');
+const UserController = require('../controllers/UserController');
 
 module.exports = function(router){
 
@@ -24,9 +24,9 @@ module.exports = function(router){
    */
   router.post('/login',
     function(req, res, next){
-      var email = req.body.email;
-      var password = req.body.password;
-      var token = req.body.token;
+      let email = req.body.email;
+      let password = req.body.password;
+      let token = req.body.token;
 
       if (token) {
         UserController.loginWithToken(token,
@@ -67,8 +67,8 @@ module.exports = function(router){
   router.post('/register',
     function(req, res, next){
       // Register with an email and password
-      var email = req.body.email;
-      var password = req.body.password;
+      let email = req.body.email;
+      let password = req.body.password;
 
       UserController.createUser(email, password,
         function(err, user){
@@ -81,7 +81,7 @@ module.exports = function(router){
 
   router.post('/reset',
     function(req, res, next){
-      var email = req.body.email;
+      let email = req.body.email;
       if (!email){
         return res.status(400).send();
       }
@@ -104,8 +104,8 @@ module.exports = function(router){
    * }
    */
   router.post('/reset/password', function(req, res){
-    var pass = req.body.password;
-    var token = req.body.token;
+    let pass = req.body.password;
+    let token = req.body.token;
 
     UserController.resetPassword(token, pass, function(err, user){
       if (err || !user){
@@ -124,7 +124,7 @@ module.exports = function(router){
    */
   router.post('/verify/resend',
     function(req, res, next){
-      var id = req.body.id;
+      let id = req.body.id;
       if (id){
         UserController.sendVerificationEmailById(id, function(err, user){
           if (err || !user){
@@ -142,7 +142,7 @@ module.exports = function(router){
    */
    router.get('/verify/:token',
     function(req, res, next){
-      var token = req.params.token;
+      let token = req.params.token;
       UserController.verifyByToken(token, function(err, user){
 
         if (err || !user){

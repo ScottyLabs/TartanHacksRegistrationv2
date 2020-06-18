@@ -1,14 +1,14 @@
 // Connect to mongodb
-var mongoose        = require('mongoose');
-var database        = process.env.DATABASE || { url: "mongodb://localhost:27017"};
+let mongoose        = require('mongoose');
+const  database        = process.env.DATABASE || { url: "mongodb://localhost:27017"};
 mongoose.connect(database.url);
 
-var UserController = require('../server/controllers/UserController');
+const  UserController = require('../server/controllers/UserController');
 
-var users = 1000;
-var username = 'hacker';
+const  users = 1000;
+const  username = 'hacker';
 
-for (var i = 0; i < users; i++){
+for (let i = 0; i < users; i++){
   console.log(username, i);
   UserController
     .createUser(username + i + '@school.edu', 'foobar', function(){

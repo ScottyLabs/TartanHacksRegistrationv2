@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
 /**
  * Settings Schema!
@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
  *
  * @type {mongoose}
  */
-var schema = new mongoose.Schema({
+let schema = new mongoose.Schema({
   status: String,
   timeOpen: {
     type: Number,

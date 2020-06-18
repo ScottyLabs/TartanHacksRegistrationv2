@@ -1,21 +1,21 @@
 // Load the dotfiles.
 require('dotenv').config({silent: true});
 
-var express         = require('express');
+const express         = require('express');
 
 // Middleware!
-var bodyParser      = require('body-parser');
-var methodOverride  = require('method-override');
+const bodyParser      = require('body-parser');
+const methodOverride  = require('method-override');
 const morgan = require('morgan');
 
-var mongoose        = require('mongoose');
-var port            = process.env.SERVER_PORT || 5000;
-var database        = process.env.DATABASE || process.env.MONGODB_URI || "mongodb://localhost:27017";
+const mongoose        = require('mongoose');
+const port            = process.env.SERVER_PORT || 5000;
+const database        = process.env.DATABASE || process.env.MONGODB_URI || "mongodb://localhost:27017";
 
-var settingsConfig  = require('./config/settings');
-var adminConfig     = require('./config/admin');
+const settingsConfig  = require('./config/settings');
+const adminConfig     = require('./config/admin');
 
-var app             = express();
+const app             = express();
 
 // Connect to mongodb
 mongoose.connect(database);
@@ -37,11 +37,11 @@ app.use(express.static(__dirname + '/client/build'));
 
 // Routers =====================================================================
 
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 require('./server/routes/api')(apiRouter);
 app.use('/api', apiRouter);
 
-var authRouter = express.Router();
+const authRouter = express.Router();
 require('./server/routes/auth')(authRouter);
 app.use('/auth', authRouter);
 

@@ -1,6 +1,6 @@
-var Settings = require('../models/Settings');
+const Settings = require('../models/Settings');
 
-var SettingsController = {};
+let SettingsController = {};
 
 /**
  * Update any field in the settings.
@@ -9,7 +9,7 @@ var SettingsController = {};
  * @param  {Function} callback args(err, settings)
  */
 SettingsController.updateField = function(field, value, callback){
-  var update = {};
+  let update = {};
   update[field] = value;
   Settings
     .findOneAndUpdate({},{
@@ -50,7 +50,7 @@ SettingsController.getWhitelistedEmails = function(callback){
  * @param  {Function} callback args(err, settings)
  */
 SettingsController.updateRegistrationTimes = function(open, close, callback){
-  var updatedTimes = {};
+  let updatedTimes = {};
 
   if (close <= open){
     return callback({

@@ -1,12 +1,12 @@
-var _ = require('underscore');
-var async = require('async');
-var User = require('../models/User');
+const _ = require('underscore');
+const async = require('async');
+const User = require('../models/User');
 
 // In memory stats.
-var stats = {};
+let stats = {};
 function calculateStats(){
   console.log('Calculating stats...');
-  var newStats = {
+  let newStats = {
     lastUpdated: 0,
 
     total: 0,
@@ -94,7 +94,7 @@ function calculateStats(){
       async.each(users, function(user, callback){
 
         // Grab the email extension
-        var email = user.email.split('@')[1];
+        let email = user.email.split('@')[1];
 
         // Add to the gender
         newStats.demo.gender[user.profile.gender] += 1;
@@ -199,7 +199,7 @@ function calculateStats(){
         callback(); // let async know we've finished
       }, function() {
         // Transform dietary restrictions into a series of objects
-        var restrictions = [];
+        let restrictions = [];
         _.keys(newStats.dietaryRestrictions)
           .forEach(function(key){
             restrictions.push({
@@ -210,7 +210,7 @@ function calculateStats(){
         newStats.dietaryRestrictions = restrictions;
 
         // Transform schools into an array of objects
-        var schools = [];
+        let schools = [];
         _.keys(newStats.demo.schools)
           .forEach(function(key){
             schools.push({
@@ -222,7 +222,7 @@ function calculateStats(){
         newStats.demo.schools = schools;
 
         // Likewise, transform the teams into an array of objects
-        // var teams = [];
+        // let teams = [];
         // _.keys(newStats.teams)
         //   .forEach(function(key){
         //     teams.push({
@@ -244,7 +244,7 @@ function calculateStats(){
 calculateStats();
 setInterval(calculateStats, 300000);
 
-var Stats = {};
+let Stats = {};
 
 Stats.getUserStats = function(){
   return stats;

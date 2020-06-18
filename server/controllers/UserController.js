@@ -1,16 +1,16 @@
-var _ = require('underscore');
-var User = require('../models/User');
-var Settings = require('../models/Settings');
-var Mailer = require('../services/email');
-var Stats = require('../services/stats');
-var Drive = require('../services/drive');
+const _ = require('underscore');
+const User = require('../models/User');
+const Settings = require('../models/Settings');
+const Mailer = require('../services/email');
+const Stats = require('../services/stats');
+const Drive = require('../services/drive');
 
-var validator = require('validator');
-var moment = require('moment');
+const validator = require('validator');
+const moment = require('moment');
 
-var UserController = {};
+let UserController = {};
 
-var maxTeamSize = process.env.TEAM_MAX_SIZE || 4;
+const maxTeamSize = process.env.TEAM_MAX_SIZE || 4;
 
 
 // Tests a string if it ends with target s
@@ -36,7 +36,7 @@ function canRegister(email, password, callback){
       callback(err);
     }
 
-    var now = Date.now();
+    const now = Date.now();
 
     if (now < times.timeOpen){
       return callback({
@@ -55,7 +55,7 @@ function canRegister(email, password, callback){
       if (err || !emails){
         return callback(err);
       }
-      for (var i = 0; i < emails.length; i++) {
+      for (let i = 0; i < emails.length; i++) {
         if (validator.isEmail(email) && endsWith(emails[i], email)){
           return callback(null, true);
         }
@@ -118,9 +118,9 @@ UserController.loginWithPassword = function(email, password, callback){
       }
 
       // yo dope nice login here's a token for your troubles
-      var token = user.generateAuthToken();
+      let token = user.generateAuthToken();
 
-      var u = user.toJSON();
+      let u = user.toJSON();
 
       delete u.password;
 
@@ -151,7 +151,7 @@ UserController.createUser = function(email, password, callback) {
       return callback(err);
     }
 
-    var u = new User();
+    let u = new User();
     u.email = email;
     u.password = User.generateHash(password);
     u.save(function(err){
@@ -166,10 +166,10 @@ UserController.createUser = function(email, password, callback) {
         return callback(err);
       } else {
         // yay! success.
-        var token = u.generateAuthToken();
+        let token = u.generateAuthToken();
 
         // Send over a verification email
-        var verificationToken = u.generateEmailVerificationToken();
+        let verificationToken = u.generateEmailVerificationToken();
         Mailer.sendVerificationEmail(email, verificationToken);
 
         return callback(
@@ -205,14 +205,14 @@ UserController.getAll = function (callback) {
  * @param  {Function} callback args(err, {users, page, totalPages})
  */
 UserController.getPage = function(query, callback){
-  var page = query.page;
-  var size = parseInt(query.size);
-  var searchText = query.text;
+  let page = query.page;
+  let size = parseInt(query.size);
+  let searchText = query.text;
 
-  var findQuery = {};
+  let findQuery = {};
   if (searchText.length > 0){
-    var queries = [];
-    var re = new RegExp(searchText, 'i');
+    let queries = [];
+    let re = new RegExp(searchText, 'i');
     queries.push({ email: re });
     queries.push({ 'profile.name': re });
     queries.push({ 'teamCode': re });
@@ -282,7 +282,7 @@ UserController.updateProfileById = function (id, profile, callback){
         callback(err);
       }
 
-      var now = Date.now();
+      let now = Date.now();
 
       if (now < times.timeOpen){
         return callback({
@@ -418,7 +418,7 @@ UserController.getTeammates = function(id, callback){
       return callback(err, user);
     }
 
-    var code = user.teamCode;
+    let code = user.teamCode;
 
     if (!code){
       return callback({
@@ -514,7 +514,7 @@ UserController.sendVerificationEmailById = function(id, callback){
       if (err || !user){
         return callback(err);
       }
-      var token = user.generateEmailVerificationToken();
+      let token = user.generateEmailVerificationToken();
       Mailer.sendVerificationEmail(user.email, token);
       return callback(err, user);
   });
@@ -534,7 +534,7 @@ UserController.sendPasswordResetEmail = function(email, callback){
         return callback(err);
       }
 
-      var token = user.generateTempAuthToken();
+      let token = user.generateTempAuthToken();
       Mailer.sendPasswordResetEmail(email, token, callback);
     });
 };

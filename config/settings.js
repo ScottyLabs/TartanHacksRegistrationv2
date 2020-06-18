@@ -1,10 +1,10 @@
-var Settings = require('../server/models/Settings');
+let Settings = require('../server/models/Settings');
 
 Settings
   .findOne({})
   .exec(function(err, settings){
     if (!settings){
-      var settings = new Settings();
+      let settings = new Settings();
       settings.save();
     }
   });

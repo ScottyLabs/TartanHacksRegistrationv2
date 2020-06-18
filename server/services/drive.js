@@ -89,18 +89,18 @@ function getAccessToken(oAuth2Client, callback) {
 
 function addResume(resumeName, dataURL, profile, callback) { 
     return (auth) => {
-        var buffer = new Buffer(dataURL.split(",")[1], 'base64');
+        let buffer = new Buffer(dataURL.split(",")[1], 'base64');
         let bufferStream = new stream.PassThrough();
         bufferStream.end(buffer);
         const drive = google.drive({ version: 'v3', auth });
         const folder_id = process.env.FOLDER_ID;
-        var fileMetadata = {
+        let fileMetadata = {
             'name': resumeName,
             'mimeType': 'application/pdf',
             'parents': [folder_id],
             'description': JSON.stringify(profile)
         };
-        var media = {
+        let media = {
             mimeType: 'application/pdf',
             body: bufferStream
         };
@@ -122,17 +122,17 @@ function addResume(resumeName, dataURL, profile, callback) {
 
 function updateResume(resumeName, dataURL, profile, fileId, callback) {
     return (auth) => {
-        var buffer = new Buffer(dataURL.split(",")[1], 'base64');
+        let buffer = new Buffer(dataURL.split(",")[1], 'base64');
         let bufferStream = new stream.PassThrough();
         bufferStream.end(buffer);
         const drive = google.drive({ version: 'v3', auth });
         const folder_id = process.env.FOLDER_ID;
-        var fileMetadata = {
+        let fileMetadata = {
             'name': resumeName,
             'mimeType': 'application/pdf',
             'description': JSON.stringify(profile)
         };
-        var media = {
+        let media = {
             mimeType: 'application/pdf',
             body: bufferStream
         };

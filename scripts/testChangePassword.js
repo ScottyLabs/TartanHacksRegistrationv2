@@ -1,18 +1,18 @@
 require('dotenv').load();
-var mongoose        = require('mongoose');
-var database        = process.env.DATABASE || { url: "mongodb://localhost:27017"};
-var jwt             = require('jsonwebtoken');
+let mongoose        = require('mongoose');
+let database        = process.env.DATABASE || { url: "mongodb://localhost:27017"};
+let jwt             = require('jsonwebtoken');
 mongoose.connect(database.url);
 
-var User = require('../server/models/User');
-var UserController = require('../server/controllers/UserController');
+let User = require('../server/models/User');
+let UserController = require('../server/controllers/UserController');
 
-var email = 'hacker@school.edu';
+let email = 'hacker@school.edu';
 
 User.findOne({
   email: email
 }, function(err, user){
-  var id = user._id;
+  let id = user._id;
 
   /* Change with old password */ 
   UserController.changePassword(
@@ -25,7 +25,7 @@ User.findOne({
   );
 
   /* Change with auth token */
-  // var token = user.generateTempAuthToken();
+  // let token = user.generateTempAuthToken();
 
   // UserController.resetPassword(
   //   id,

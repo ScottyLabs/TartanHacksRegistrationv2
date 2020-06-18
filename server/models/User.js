@@ -1,10 +1,10 @@
-var mongoose = require("mongoose"),
+const mongoose = require("mongoose"),
   bcrypt = require("bcrypt-nodejs"),
   validator = require("validator"),
   jwt = require("jsonwebtoken");
 JWT_SECRET = process.env.JWT_SECRET;
 
-var profile = {
+let profile = {
   // Basic info
   name: {
     type: String,
@@ -58,7 +58,7 @@ var profile = {
 };
 
 // Only after confirmed
-var confirmation = {
+let confirmation = {
   dietaryRestrictions: [String],
   shirtSize: {
     type: String,
@@ -98,7 +98,7 @@ var confirmation = {
   signatureCodeOfConduct: String
 };
 
-var status = {
+let status = {
   /**
    * Whether or not the user's profile has been completed.
    * @type {Object}
@@ -146,7 +146,7 @@ var status = {
 };
 
 // define the schema for our admin model
-var schema = new mongoose.Schema({
+let schema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
