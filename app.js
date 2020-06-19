@@ -18,7 +18,7 @@ const adminConfig     = require('./config/admin');
 const app             = express();
 
 // Connect to mongodb
-mongoose.connect(database);
+mongoose.connect(database, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 // Morgan is for logging
 app.use(morgan('dev'));
