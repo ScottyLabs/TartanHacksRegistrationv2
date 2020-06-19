@@ -41,7 +41,7 @@
   "scripts": {
     "config": "cp .env.config .env",
     "mongo": "mongod --dbpath db",
-    "start": "npm run build --prefix client && node app.js",
+    "start": "npm run build && node app.js",
     "server": "nodemon app.js",
     "client": "react-scripts start",
     "dev": "npm-run-all -p server client",
