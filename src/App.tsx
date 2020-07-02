@@ -19,6 +19,7 @@ function App() {
         </Route>
         <Route path="/team">
           <Team />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
