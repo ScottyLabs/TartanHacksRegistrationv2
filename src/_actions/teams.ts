@@ -7,7 +7,7 @@ const create = (_id: string, body: any): DispatchAction => ({
     "CREATE_TEAM_ERROR"
   ],
   request: {
-    path: `/users/${_id}/team`,
+    path: `/api/users/${_id}/team`,
     method: "PUT",
     body
   }

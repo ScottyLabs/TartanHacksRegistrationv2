@@ -35,19 +35,13 @@ export default (store: any) => (next: any) => async (
     Connection: "keep-alive",
   };
 
-  const requestInit = {
-    headers,
-    method: request.method,
-    body: JSON.stringify(request.body),
-  };
-
   let response;
   try {
-    response = await fetch(url, requestInit);
     response = await axios({
       method: request.method,
       url: url,
-      data: request.body
+      data: request.body,
+      headers: headers
     })
   } catch (err) {
     if (err.message === "Failed to fetch") {
@@ -61,7 +55,6 @@ export default (store: any) => (next: any) => async (
   }
 
   if (response?.status === 200) {
-    console.log(response);
     const body = response;
     dispatch({ type: successType, body });
     return Promise.resolve({ type: successType, body });
@@ -69,7 +62,7 @@ export default (store: any) => (next: any) => async (
 
   if (request.path !== "/auth/verify") {
     // TODO: create semantic toast
-    console.log((response as any).message);
+    console.log(response);
   }
   dispatch({ type: failureType, message: response?.statusText });
   throw { type: failureType, message: response?.statusText };
