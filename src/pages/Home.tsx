@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import SideMenu from '../components/SideMenu';
+import { Sidebar, Grid } from 'semantic-ui-react';
+import DashInfo from '../components/DashInfo';
 
-class Home extends Component {
-    render() {
-        return (
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload. Boy meh
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        )
-    }
-}
+const Home = () => {
+  return (
+    <SideMenu
+      content={
+        <Grid verticalAlign="middle" style={{ height: '100vh' }} centered>
+          <Grid.Row>
+            <Grid.Column width={10}>
+              <DashInfo name="Andrew Carnegie" />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      }
+    />
+  );
+};
 
-export default Home
+export default Home;
