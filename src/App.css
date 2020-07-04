@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.pushable {
+  height: 100vh;
+}
+
+.pusher {
+  width: calc(100% - 150px);
+  margin-left: 150px;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: center;
+}
