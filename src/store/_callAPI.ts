@@ -29,10 +29,7 @@ export default (store: any) => (next: any) => async (
   const accessToken = window.localStorage.getItem("accessToken");
 
   const headers = {
-    Authorization: "Bearer " + accessToken || "",
     "Content-Type": "application/json",
-    "Accept-Encoding": "gzip, deflate, br",
-    Connection: "keep-alive",
   };
 
   let response;
@@ -41,9 +38,10 @@ export default (store: any) => (next: any) => async (
       method: request.method,
       url: url,
       data: request.body,
-      headers: headers
-    })
+      headers: headers,
+    });
   } catch (err) {
+    console.log("Error", err);
     if (err.message === "Failed to fetch") {
       // TODO: create semantic toast
       console.log(

@@ -1,5 +1,6 @@
 const UserController = require('../controllers/UserController');
 const SettingsController = require('../controllers/SettingsController');
+const TeamController = require('../controllers/TeamController');
 
 const request = require('request');
 
@@ -51,13 +52,13 @@ module.exports = function(router) {
     UserController.getByToken(token, function(err, user){
 
       if (err || !user) {
-        return res.status(500).send(err);
+        return res.status(401).send(err);
       }
 
       if (user._id == userId || user.admin){
         return next();
       }
-      return res.status(400).send({
+      return res.status(401).send({
         message: 'Token does not match user id.'
       });
     });
@@ -180,44 +181,37 @@ module.exports = function(router) {
    *
    * POST - Decline an acceptance.
    */
-  router.post('/users/:id/decline', isOwnerOrAdmin, function(req, res){
-    let confirmation = req.body.confirmation;
-    let id = req.params.id;
-
-    UserController.declineById(id, defaultResponse(req, res));
-  });
+  router.post('/users/:id/decline', isOwnerOrAdmin, TeamController.decline);
 
   /**
-   * Get a user's team member's names. Uses the code associated
-   * with the user making the request.
+   * Get a user's team.
    */
-  router.get('/users/:id/team', isOwnerOrAdmin, function(req, res){
-    let id = req.params.id;
-    UserController.getTeammates(id, defaultResponse(req, res));
-  });
+  router.get('/users/:id/team', isOwnerOrAdmin, TeamController.get);
+
+  router.get("/teams/:id", TeamController.getMembers);
+
+  router.get('/users/:id/team/invitations', isOwnerOrAdmin, TeamController.getInvites);
 
   /**
-   * Update a teamcode. Join/Create a team here.
+   * Create a team here
    * {
-   *   code: STRING
+   *   code: STRING (team name)
    * }
    */
-  router.put('/users/:id/team', isOwnerOrAdmin, function(req, res){
-    let code = req.body.code;
-    let id = req.params.id;
+  router.put('/users/:id/team', isOwnerOrAdmin, TeamController.create);
 
-    UserController.createOrJoinTeam(id, code, defaultResponse(req, res));
-
-  });
+  /**
+   * Join a team here
+   * {
+   *   code: STRING (team name)
+   * }
+   */
+  router.post('/users/:id/team', isOwnerOrAdmin, TeamController.join);
 
   /**
    * Remove a user from a team.
    */
-  router.delete('/users/:id/team', isOwnerOrAdmin, function(req, res){
-    let id = req.params.id;
-
-    UserController.leaveTeam(id, defaultResponse(req, res));
-  });
+  router.delete('/users/:id/team', isOwnerOrAdmin, TeamController.leave);
 
   /**
    * Update a user's password.
