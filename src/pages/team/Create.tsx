@@ -33,7 +33,14 @@ const TeamCreateForm = () => {
       initialValues={{ team_name: "" }}
       validationSchema={TeamNameSchema}
       onSubmit={async (values: any) => {
-        await dispatch(actions.teams.create("abc", values));
+        try {
+          await dispatch(
+            actions.teams.create("5f00fba75b467761608b44d3", values)
+          );
+        } catch (error) {
+          console.log("Error");
+          console.log(error);
+        }
       }}
     >
       {(props) => (
