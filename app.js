@@ -1,7 +1,8 @@
 // Load the dotfiles.
 require("dotenv").config({ silent: true });
 
-const express = require("express");
+const express         = require('express');
+const cors            = require('cors');
 
 // Middleware!
 const bodyParser = require("body-parser");
@@ -20,6 +21,9 @@ const adminConfig = require("./config/admin");
 const cors = require("cors");
 
 const app = express();
+app.use(cors());
+
+// Set up CORS policy
 app.use(cors());
 
 // Connect to mongodb

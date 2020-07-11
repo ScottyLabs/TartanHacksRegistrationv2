@@ -63,12 +63,10 @@ function canRegister(email, password, callback) {
           return callback(null, true);
         }
       }
-      return callback(
-        {
-          message: "Not a valid educational email.",
-        },
-        false
-      );
+      return callback({
+        title: "Registration Failed!",
+        message: "Not a valid educational email."
+      }, false);
     });
   });
 }
@@ -93,13 +91,15 @@ UserController.loginWithToken = function (token, callback) {
 UserController.loginWithPassword = function (email, password, callback) {
   if (!password || password.length === 0) {
     return callback({
-      message: "Please enter a password",
+      title: 'Login Failed!',
+      message: 'Please enter a password'
     });
   }
 
   if (!validator.isEmail(email)) {
     return callback({
-      message: "Invalid email",
+      title: 'Login Failed!',
+      message: 'Invalid email'
     });
   }
 
@@ -111,12 +111,14 @@ UserController.loginWithPassword = function (email, password, callback) {
       }
       if (!user) {
         return callback({
-          message: "We couldn't find you!",
+          title: 'Login Failed!',
+          message: "User account does not exist yet!"
         });
       }
       if (!user.checkPassword(password)) {
         return callback({
-          message: "That's not the right password.",
+          title: 'Login Failed!',
+          message: "That's not the right password."
         });
       }
 
@@ -140,7 +142,8 @@ UserController.loginWithPassword = function (email, password, callback) {
 UserController.createUser = function (email, password, callback) {
   if (typeof email !== "string") {
     return callback({
-      message: "Email must be a string.",
+      title: 'Registration Failed!',
+      message: "Email must be a string."
     });
   }
 
@@ -163,7 +166,8 @@ UserController.createUser = function (email, password, callback) {
           (err.code === 11000 || err.code === 11001)
         ) {
           return callback({
-            message: "An account for this email already exists.",
+            title: 'Registration Failed!',
+            message: 'An account for this email already exists.'
           });
         }
 

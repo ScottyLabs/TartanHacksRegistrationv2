@@ -1,5 +1,6 @@
 import { DispatchAction } from "../_types/dispatchAction";
 import axios from "axios";
+import { toast } from "react-semantic-toasts";
 
 export default (store: any) => (next: any) => async (
   action: DispatchAction
@@ -26,8 +27,6 @@ export default (store: any) => (next: any) => async (
 
   const url = `${process.env.REACT_APP_HTTP_BASE_URL}${request.path}`;
 
-  const accessToken = window.localStorage.getItem("accessToken");
-
   const headers = {
     "Content-Type": "application/json",
   };
@@ -39,6 +38,9 @@ export default (store: any) => (next: any) => async (
       url: url,
       data: request.body,
       headers: headers,
+      validateStatus: (status) => {
+        return true;
+      },
     });
   } catch (err) {
     console.log("Error", err);
@@ -59,8 +61,15 @@ export default (store: any) => (next: any) => async (
   }
 
   if (request.path !== "/auth/verify") {
-    // TODO: create semantic toast
     console.log(response);
+    toast({
+      icon: "exclamation",
+      type: "error",
+      title: response?.data.title || "Operation Failed!",
+      description: response?.data.message,
+      time: 10000,
+      animation: "drop"
+    });
   }
   dispatch({ type: failureType, message: response?.statusText });
   throw { type: failureType, message: response?.statusText };
