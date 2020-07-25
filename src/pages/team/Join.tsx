@@ -1,17 +1,35 @@
 import React from "react";
-import {
-  Form,
-  Segment,
-  Grid,
-  Button,
-  Message,
-  Divider,
-  Image,
-} from "semantic-ui-react";
+import { Grid, Message } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { useEffect, useState } from "react";
+import * as actions from "../../_actions";
 
 const TeamJoinForm = () => {
   // TODO: create a table showing team invites
+  const dispatch = useDispatch();
+  const store = useStore();
+  const state = store.getState();
+  console.log("State", state);
+
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    try {
+      console.log("Fetching data");
+      setLoading(true);
+      await dispatch(actions.teams.invitations("5f00fba75b467761608b44d3"));
+      setLoading(false);
+      console.log("Done fetching");
+    } catch {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return null;
 };
 

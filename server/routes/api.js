@@ -49,6 +49,8 @@ module.exports = function(router) {
     let token = getToken(req);
     let userId = req.params.id;
 
+    console.log("Token", token);
+
     UserController.getByToken(token, function(err, user){
 
       if (err || !user) {

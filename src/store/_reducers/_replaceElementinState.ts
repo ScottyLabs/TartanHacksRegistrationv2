@@ -8,7 +8,7 @@ export default (
   const newState = Object.assign({}, state)
 
   if (Array.isArray(payload)) {
-    const arrayToReturn = payload.filter(e => e)
+    const arrayToReturn = payload.slice();
 
     arrayToReturn.forEach(element => {
       newState[element._id] = element

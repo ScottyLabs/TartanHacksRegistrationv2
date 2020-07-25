@@ -14,6 +14,8 @@ import { Formik } from "formik";
 import logo from "../../assets/signin-logo.png";
 import { useDispatch } from "react-redux";
 import * as actions from "../../_actions";
+import { SemanticToastContainer, toast } from 'react-semantic-toasts';
+import 'react-semantic-toasts/styles/react-semantic-alert.css';
 
 const TeamNameSchema = Yup.object().shape({
   team_name: Yup.string()
@@ -39,7 +41,13 @@ const TeamCreateForm = () => {
           );
         } catch (error) {
           console.log("Error");
-          console.log(error);
+          console.log(error.message);
+          toast({
+            type: "error",
+            title: "Error",
+            description: error.message,
+            time: 5000
+          })
         }
       }}
     >
@@ -80,6 +88,7 @@ const Create = (): ReactElement => {
         <Message color="black">
           Have a team already? <Link to="/team/join">Join Team</Link>
         </Message>
+        <SemanticToastContainer position="bottom-right"/>
       </Grid.Column>
     </Grid>
   );

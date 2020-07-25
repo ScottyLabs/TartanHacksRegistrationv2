@@ -4,7 +4,7 @@ import axios from "axios";
 export default (store: any) => (next: any) => async (
   action: DispatchAction
 ): Promise<any> => {
-  const { types, request } = action;
+  const { types, request, body } = action;
 
   if (!types) {
     next(action);
@@ -26,12 +26,15 @@ export default (store: any) => (next: any) => async (
 
   const url = `${process.env.REACT_APP_HTTP_BASE_URL}${request.path}`;
 
-  const accessToken = window.localStorage.getItem("accessToken");
+  // const accessToken = window.localStorage.getItem("accessToken");
+  const accessToken = "eyJhbGciOiJIUzI1NiJ9.NWYwMGZiYTc1YjQ2Nzc2MTYwOGI0NGQz.GcNVrgKLIhbOYDBDwVYEUJoWOJqzpSFipgpvD_bxVEs";
 
   const headers = {
-    "Content-Type": "application/json",
-  };
+    'x-access-token': accessToken || ''
+  }
 
+  console.log("Sending request");
+  
   let response;
   try {
     response = await axios({
@@ -39,6 +42,7 @@ export default (store: any) => (next: any) => async (
       url: url,
       data: request.body,
       headers: headers,
+      validateStatus: (status) => true
     });
   } catch (err) {
     console.log("Error", err);
@@ -53,8 +57,7 @@ export default (store: any) => (next: any) => async (
   }
 
   if (response?.status === 200) {
-    const body = response;
-    dispatch({ type: successType, body });
+    dispatch({ type: successType, body: response.data });
     return Promise.resolve({ type: successType, body });
   }
 

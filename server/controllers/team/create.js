@@ -2,7 +2,7 @@ const User = require("../../models/User");
 const Team = require("../../models/Team");
 
 module.exports = async (req, res) => {
-  const name = req.body.name;
+  const name = req.body.team_name;
   const id = req.params.id;
 
   if (!name) {

@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({ message: "User already has a team" });
   }
 
+  console.log(user);
   const teamInvitations = user.teamInvitations;
   if (!teamInvitations || teamInvitations.length == 0) {
     return res.json([]);
