@@ -18,10 +18,8 @@ const database =
 
 const settingsConfig = require("./config/settings");
 const adminConfig = require("./config/admin");
-const cors = require("cors");
 
 const app = express();
-app.use(cors());
 
 // Set up CORS policy
 app.use(cors());
