@@ -11,7 +11,6 @@ const Home = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log(state);
 
   const verify = async () => {
     try {
@@ -27,6 +26,8 @@ const Home = () => {
   useEffect(() => {
     verify();
   }, []);
+  
+  console.log(state);
 
   return (
     <SideMenu
@@ -34,7 +35,7 @@ const Home = () => {
         <Grid verticalAlign="middle" style={{ height: "100vh" }} centered>
           <Grid.Row>
             <Grid.Column width={10}>
-              <DashInfo name="Andrew Carnegie" />
+              <DashInfo name="Andrew Carnegie" verified={false} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

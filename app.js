@@ -1,8 +1,8 @@
 // Load the dotfiles.
 require("dotenv").config({ silent: true });
 
-const express         = require('express');
-const cors            = require('cors');
+const express = require("express");
+const cors = require("cors");
 
 // Middleware!
 const bodyParser = require("body-parser");
@@ -25,11 +25,13 @@ const app = express();
 app.use(cors());
 
 // Connect to mongodb
-mongoose.connect(database, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+mongoose
+  .connect(database, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .catch(() => console.log("Failed to connect to DB!"));
 
 // Morgan is for logging
 app.use(morgan("dev"));
