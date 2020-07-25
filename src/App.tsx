@@ -6,12 +6,16 @@ import { Create, View, Team } from "./pages/team"
 import Application from './pages/Application'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
+import Verify from './pages/auth/Verify'
 import { useSelector } from "react-redux";
 
 function App() {
   return (
     <div className="App">
       <Switch>
+        <Route path="/verify/:token">
+          <Verify />
+        </Route>
         <Route path="/team/create">
           <Create />
         </Route>

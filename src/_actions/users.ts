@@ -36,8 +36,17 @@ const verifyToken = (body: verifyBody): DispatchAction => ({
   },
 });
 
+const verifyEmail = (body: verifyBody): DispatchAction => ({
+  types: ["VERIFY_EMAIL_REQUEST", "VERIFY_EMAIL_SUCCESS", "VERIFY_EMAIL_ERROR"],
+  request: {
+    path: "/auth/verify/" + body.token,
+    method: "GET"
+  }
+});
+
 export default {
   login,
   register,
-  verifyToken
+  verifyToken,
+  verifyEmail
 };
