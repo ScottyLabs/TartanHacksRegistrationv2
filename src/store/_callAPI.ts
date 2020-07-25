@@ -43,6 +43,7 @@ export default (store: any) => (next: any) => async (
       },
     });
   } catch (err) {
+    console.log("Error", err);
     if (err.message === "Failed to fetch") {
       // TODO: create semantic toast
       console.log(
