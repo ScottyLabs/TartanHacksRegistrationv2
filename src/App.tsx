@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import { Create, View, Team, Join } from "./pages/team"
 import Application from './pages/Application'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
+import { useSelector } from "react-redux";
 
 function App() {
   return (

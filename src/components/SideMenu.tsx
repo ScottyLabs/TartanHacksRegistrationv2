@@ -1,6 +1,8 @@
-import React from 'react';
-import { Sidebar, Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Sidebar, Menu } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import sidebarLogo from "../assets/sidebar-logo.svg";
+import removeAccessToken from "../util/removeAccessToken";
 
 interface sideMenuProps {
   content: any;
@@ -20,12 +22,21 @@ const SideMenu = (props: sideMenuProps) => {
         width="thin"
       >
         <Menu.Item as={Link} to="/">
+          <img src={sidebarLogo} alt="TartanHacks" />
+        </Menu.Item>
+        <Menu.Item as={Link} to="/">
           Home
         </Menu.Item>
         <Menu.Item as={Link} to="/">
           Admin
         </Menu.Item>
-        <Menu.Item as={Link} to="/login">
+        <Menu.Item
+          onClick={() => {
+            removeAccessToken();
+          }}
+          as={Link}
+          to="/login"
+        >
           Log Out
         </Menu.Item>
       </Sidebar>
