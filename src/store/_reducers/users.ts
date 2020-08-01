@@ -37,8 +37,8 @@ const isFetching = (state = true, action: StoreAction) => {
   }
 }
 
-export default {
+export default combineReducers({
   data,
   didInvalidate,
   isFetching
-}
+})
