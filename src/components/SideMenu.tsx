@@ -27,6 +27,9 @@ const SideMenu = (props: sideMenuProps) => {
         <Menu.Item as={Link} to="/">
           Home
         </Menu.Item>
+        <Menu.Item as={Link} to="/team">
+          Team
+        </Menu.Item>
         <Menu.Item as={Link} to="/">
           Admin
         </Menu.Item>

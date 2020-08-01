@@ -5,7 +5,7 @@ import { toast } from "react-semantic-toasts";
 export default (store: any) => (next: any) => async (
   action: DispatchAction
 ): Promise<any> => {
-  const { types, request, body } = action;
+  const { types, request } = action;
 
   if (!types) {
     next(action);
@@ -27,10 +27,8 @@ export default (store: any) => (next: any) => async (
 
   const url = `${process.env.REACT_APP_HTTP_BASE_URL}${request.path}`;
 
-  const accessToken = window.localStorage.getItem("accessToken");
-
   const headers = {
-    'x-access-token': accessToken || ''
+    "Content-Type": "application/json"
   }
 
   console.log("Sending request");
@@ -57,7 +55,8 @@ export default (store: any) => (next: any) => async (
   }
 
   if (response?.status === 200) {
-    dispatch({ type: successType, body: response.data });
+    const body = response;
+    dispatch({ type: successType, body });
     return Promise.resolve({ type: successType, body });
   }
 
