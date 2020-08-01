@@ -1,5 +1,36 @@
-import React from 'react';
-import { Segment, Header, Divider } from 'semantic-ui-react';
+import React from "react";
+import { Segment, Header, Divider } from "semantic-ui-react";
+
+enum semanticColors {
+  red = "red",
+  orange = "orange",
+  yellow = "yellow",
+  olive = "olive",
+  green = "green",
+  teal = "teal",
+  blue = "blue",
+  violet = "violet",
+  purple = "purple",
+  pink = "pink",
+  brown = "brown",
+  grey = "grey",
+  black = "black",
+}
+
+const Title = (props: any) => {
+  let color: semanticColors = semanticColors.red;
+  let status = "";
+  if (!props.verified) {
+    status = "UNVERIFIED";
+  }
+  return (
+    <Segment color={color} inverted textAlign="center">
+      <Header as="h3" style={{ letterSpacing: 2 }}>
+        {status}
+      </Header>
+    </Segment>
+  );
+};
 
 const DashInfo = (props: any) => {
   return (
@@ -8,15 +39,9 @@ const DashInfo = (props: any) => {
         <Header as="h1" textAlign="center">
           Your Status
         </Header>
-        <Segment color="red" inverted textAlign="center">
-          <Header as="h3" style={{ letterSpacing: 2 }}>
-            EXPIRED ADMISSION boy meh
-          </Header>
-        </Segment>
+        <Title verified={props.verified} />
         <Divider />
-        <p>
-          Welcome back{props.name ? ', ' + props.name : ''}!
-        </p>
+        <p>Welcome back{props.name ? ", " + props.name : ""}!</p>
         <p>
           <strong>
             Your confirmation deadline of Friday, February 14th 2020, 11:00 pm
