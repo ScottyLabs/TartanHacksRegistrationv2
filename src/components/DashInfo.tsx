@@ -18,15 +18,37 @@ enum semanticColors {
 }
 
 const Title = (props: any) => {
-  let color: semanticColors = semanticColors.red;
-  let status = "";
-  if (!props.verified) {
-    status = "UNVERIFIED";
+  const status = props.status;
+  let color: semanticColors;
+  let message;
+  if (status) {
+    if (!status.verified) {
+      message = "UNVERIFIED";
+      color = semanticColors.red;
+    } else if (!status.completed) {
+      message = "APPLICATION INCOMPLETE";
+      color = semanticColors.red;
+    } else if (!status.admitted) {
+      message = "PENDING ADMISSION";
+      color = semanticColors.orange;
+    } else if (!status.confirmed) {
+      message = "ADMITTED";
+      color = semanticColors.yellow;
+    } else if (!status.declined) {
+      message = "CONFIRMED";
+      color = semanticColors.green;
+    } else {
+      message = "DECLINED";
+      color = semanticColors.red;
+    }
+  } else {
+    message = "PROFILE ERROR";
+    color = semanticColors.red;
   }
   return (
     <Segment color={color} inverted textAlign="center">
       <Header as="h3" style={{ letterSpacing: 2 }}>
-        {status}
+        {message}
       </Header>
     </Segment>
   );
@@ -39,7 +61,7 @@ const DashInfo = (props: any) => {
         <Header as="h1" textAlign="center">
           Your Status
         </Header>
-        <Title verified={props.verified} />
+        <Title status={props.status} />
         <Divider />
         <p>Welcome back{props.name ? ", " + props.name : ""}!</p>
         <p>
