@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Switch, Route } from "react-router-dom";
 import Home from './pages/Home'
-import Application from './pages/Application'
+import Application from './components/Application'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       
       <Switch>
         <Route path="/application">
-          <Application />
+          <Application email="richgtx@gmail.com"/>
         </Route>
         <Route path="/">
           <Home />
