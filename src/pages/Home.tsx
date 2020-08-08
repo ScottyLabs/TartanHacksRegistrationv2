@@ -1,23 +1,72 @@
-import React, { Component } from 'react';
+import React, { useEffect } from "react";
+import SideMenu from "../components/SideMenu";
+import { Grid } from "semantic-ui-react";
+import DashInfo from "../components/DashInfo";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../_actions";
+import { useHistory } from "react-router-dom";
+import { getUser } from "../util/getUserFromState"
 
-class Home extends Component {
-    render() {
-        return (
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload. Boy meh
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        )
-    }
+interface userStatus {
+  verified: boolean;
+  completed: boolean;
+  admitted: boolean;
+  confirmed: boolean;
+  declined: boolean;
 }
 
-export default Home
+const getStatus = (user: any): userStatus | null => {
+  if (user) {
+    return {
+      verified: user.verified,
+      completed: user.status.completedProfile,
+      admitted: user.status.admitted,
+      confirmed: user.status.confirmed,
+      declined: user.status.declined,
+    };
+  }
+  return null;
+};
+
+const Home = () => {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const user = getUser(state);
+
+  const verify = async () => {
+    try {
+      const body = {
+        token: window.localStorage.getItem("accessToken"),
+      };
+      await dispatch(actions.users.verifyToken(body));
+    } catch {
+      history.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    verify();
+  }, []);
+
+  console.log(state);
+
+  let userStatus = getStatus(user);
+
+  return (
+    <SideMenu
+      content={
+        <Grid verticalAlign="middle" style={{ height: "100vh" }} centered>
+          <Grid.Row>
+            <Grid.Column width={10}>
+              <DashInfo name={user?.profile?.name} status={userStatus} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      }
+    />
+  );
+};
+
+export default Home;

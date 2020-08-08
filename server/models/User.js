@@ -177,11 +177,15 @@ let schema = new mongoose.Schema({
     default: Date.now()
   },
 
-  teamCode: {
-    type: String,
-    min: 0,
-    max: 140
+  teamId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Team"
   },
+
+  teamInvitations: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Team"
+  }],
 
   verified: {
     type: Boolean,
@@ -238,7 +242,7 @@ schema.methods.generateEmailVerificationToken = function() {
 };
 
 schema.methods.generateAuthToken = function() {
-  return jwt.sign(this._id, JWT_SECRET);
+  return jwt.sign(this._id.toString(), JWT_SECRET);
 };
 
 /**
