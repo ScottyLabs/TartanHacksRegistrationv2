@@ -8,7 +8,6 @@ const data = (state = {}, action: StoreAction) => {
     case "GET_TEAMS_SUCCESS":
       return objectById(state, action.body as StoreActionPayload[]);
     case "GET_TEAM_SUCCESS":
-    case "GET_TEAM_INVITATIONS_SUCCESS":
       return replaceElementinState(state, action.body as StoreActionPayload);
     case "VERIFY_TOKEN_ERROR":
       return {};
@@ -26,7 +25,6 @@ const didInvalidate = (state = true, action: StoreAction): boolean => {
       return true;
     case "GET_TEAM_SUCCESS":
     case "GET_TEAMS_SUCCESS":
-    case "GET_TEAM_INVITATIONS_SUCCESS":
       return false;
     default:
       return state;
@@ -37,14 +35,11 @@ const isFetching = (state = false, action: StoreAction): boolean => {
   switch (action.type) {
     case "GET_TEAMS_REQUEST":
     case "GET_TEAM_REQUEST":
-    case "GET_TEAM_INVITATIONS_REQUEST":
       return true;
     case "GET_TEAMS_SUCCESS":
     case "GET_TEAMS_ERROR":
     case "GET_TEAM_SUCCESS":
     case "GET_TEAM_ERROR":
-    case "GET_TEAM_INVITATIONS_SUCCESS":
-    case "GET_TEAM_INVITATIONS_ERROR":
       return false;
     default:
       return state;

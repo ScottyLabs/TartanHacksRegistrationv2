@@ -9,11 +9,11 @@ module.exports = async (req, res) => {
     return res.status(404).json({ message: "Unknown user" });
   }
 
-  if (!user.teamId) {
+  if (!user.team) {
     return res.status(400).json({ message: "User does not have a team" });
   }
 
-  const team = await Team.findById(user.teamId).populate("members");
+  const team = await Team.findById(user.team).populate("members");
   if (!team) {
     return res.status(404).json({ message: "Team not found" });
   }

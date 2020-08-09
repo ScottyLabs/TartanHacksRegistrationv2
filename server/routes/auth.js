@@ -29,7 +29,6 @@ module.exports = function (router) {
     console.log(req.body);
 
     if (password) {
-      console.log("Logging in with password");
       UserController.loginWithPassword(email, password, function (
         err,
         token,
@@ -44,7 +43,6 @@ module.exports = function (router) {
         });
       });
     } else {
-      console.log("Logging in with token");
       UserController.loginWithToken(token, function (err, token, user) {
         if (err || !user) {
           return res.status(400).send(err);

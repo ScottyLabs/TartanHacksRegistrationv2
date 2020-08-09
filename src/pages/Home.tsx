@@ -4,30 +4,17 @@ import { Grid } from "semantic-ui-react";
 import DashInfo from "../components/DashInfo";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import * as actions from "../_actions";
 import { useHistory } from "react-router-dom";
+import getCurrentUser from "../util/getCurrentUser";
 
 const Home = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const verify = async () => {
-    try {
-      const body = {
-        token: window.localStorage.getItem("accessToken")
-      }
-      await dispatch(actions.users.verifyToken(body));
-    } catch {
-      history.push("/login");
-    }
-  };
-
   useEffect(() => {
-    verify();
+    getCurrentUser(dispatch, history);
   }, []);
-  
-  console.log(state);
 
   return (
     <SideMenu

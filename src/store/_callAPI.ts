@@ -28,11 +28,9 @@ export default (store: any) => (next: any) => async (
   const url = `${process.env.REACT_APP_HTTP_BASE_URL}${request.path}`;
 
   const headers = {
-    "Content-Type": "application/json"
+    "x-access-token": window.localStorage.getItem("accessToken")
   }
 
-  console.log("Sending request");
-  
   let response;
   try {
     response = await axios({

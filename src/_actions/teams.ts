@@ -9,19 +9,6 @@ const create = (_id: string, body: any): DispatchAction => ({
   },
 });
 
-const invitations = (_id: string): DispatchAction => ({
-  types: [
-    "GET_TEAM_INVITATIONS_REQUEST",
-    "GET_TEAM_INVITATIONS_SUCCESS",
-    "GET_TEAM_INVITATIONS_ERROR",
-  ],
-  request: {
-    path: `/api/users/${_id}/team/invitations`,
-    method: "GET"
-  }
-});
-
 export default {
-  create,
-  invitations
+  create
 }

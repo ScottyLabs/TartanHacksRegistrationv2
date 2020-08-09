@@ -4,8 +4,8 @@ const join = require("./join");
 const leave = require("./leave");
 const getMembers = require("./getMembers");
 const decline = require("./decline");
-const getInvites = require("./getInvites");
+const getInvite = require("./getInvite");
 
 module.exports = {
-  create, get, join, leave, getMembers, decline, getInvites
+  create, get, join, leave, getMembers, decline, getInvite
 }

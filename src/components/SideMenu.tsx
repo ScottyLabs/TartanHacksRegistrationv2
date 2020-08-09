@@ -3,6 +3,7 @@ import { Sidebar, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import sidebarLogo from "../assets/sidebar-logo.svg";
 import removeAccessToken from "../util/removeAccessToken";
+import { SemanticToastContainer } from "react-semantic-toasts";
 
 interface sideMenuProps {
   content: any;
@@ -44,6 +45,7 @@ const SideMenu = (props: sideMenuProps) => {
         </Menu.Item>
       </Sidebar>
       <Sidebar.Pusher>{props.content ? props.content : null}</Sidebar.Pusher>
+    <SemanticToastContainer position="bottom-right" />
     </Sidebar.Pushable>
   );
 };

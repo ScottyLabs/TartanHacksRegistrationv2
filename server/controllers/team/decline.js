@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     return res.status(404).json({ message: "Unknown user" });
   }
 
-  if (user.teamId) {
+  if (user.team) {
     return res.status(400).json({ message: "User already has a team" });
   }
 
@@ -23,11 +23,11 @@ module.exports = async (req, res) => {
     return res.status(404).json({ message: "Team does not exist" });
   }
 
-  if (!user.teamInvites.contains(teamId)) {
+  if (user.teamInvite != teamId) {
     return res.status(400).json({ message: "User does not have an invite from this team" });
   }
 
-  user.teamInvites.remove(teamId);
+  delete user.teamInvite;
   await user.save();
 
   return res.json(user);

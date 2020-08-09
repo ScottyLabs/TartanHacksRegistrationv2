@@ -9,12 +9,12 @@ module.exports = async (req, res) => {
     return res.status(404).json({ message: "Unknown user" });
   }
 
-  const teamName = user.teamCode;
-  if (!teamName) {
+  let team = user.team;
+  if (!team) {
     return res.status(400).json({ message: "User is not part of a team"});
   }
 
-  const team = Team.findOne({ name: teamName });
+  team = Team.findOne({ name: teamName });
   if (team && team.members.contains(id)) {
     team.members.remove(id);
     // Delete team if no members left
@@ -24,6 +24,6 @@ module.exports = async (req, res) => {
       await team.save();
     }
   }
-  delete user.teamCode;
+  delete user.team;
   return await user.save();
 };

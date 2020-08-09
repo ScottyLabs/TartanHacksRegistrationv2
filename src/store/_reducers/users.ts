@@ -3,10 +3,10 @@ import { StoreAction, StoreActionPayload } from '../../_types/storeAction';
 import objectById from "./_objectById";
 import replaceElementinState from "./_replaceElementinState";
 
-const data = (state = {}, action: StoreAction) => {
+const data = (state = {}, action: any) => {
   switch (action.type) {
     case "VERIFY_TOKEN_SUCCESS":
-      return action.body;
+      return { user: action.body?.data?.user, ...action.body};
     case "VERIFY_TOKEN_ERROR":
       return {};
     default:
