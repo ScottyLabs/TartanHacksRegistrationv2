@@ -5,7 +5,7 @@ import DashInfo from "../components/DashInfo";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../_actions";
 import { useHistory } from "react-router-dom";
-import { getUser } from "../util/getUserFromState"
+import { getUser } from "../util/getUserFromState";
 
 interface userStatus {
   verified: boolean;
@@ -55,17 +55,15 @@ const Home = () => {
   let userStatus = getStatus(user);
 
   return (
-    <SideMenu
-      content={
-        <Grid verticalAlign="middle" style={{ height: "100vh" }} centered>
-          <Grid.Row>
-            <Grid.Column width={10}>
-              <DashInfo name={user?.profile?.name} status={userStatus} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      }
-    />
+    <SideMenu>
+      <Grid verticalAlign="middle" style={{ height: "100vh" }} centered>
+        <Grid.Row>
+          <Grid.Column width={10}>
+            <DashInfo name={user?.profile?.name} status={userStatus} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </SideMenu>
   );
 };
 

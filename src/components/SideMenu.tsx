@@ -6,11 +6,7 @@ import removeAccessToken from "../util/removeAccessToken";
 import { useSelector } from "react-redux";
 import { getUser } from "../util/getUserFromState";
 
-interface sideMenuProps {
-  content: any;
-}
-
-const SideMenu = (props: sideMenuProps) => {
+const SideMenu = (props: any) => {
   const state = useSelector((state) => state);
   const user = getUser(state);
   const isAdmin = user?.admin ? user?.admin : false;
@@ -47,7 +43,7 @@ const SideMenu = (props: sideMenuProps) => {
           Log Out
         </Menu.Item>
       </Sidebar>
-      <Sidebar.Pusher>{props.content ? props.content : null}</Sidebar.Pusher>
+      <Sidebar.Pusher>{props.children}</Sidebar.Pusher>
     </Sidebar.Pushable>
   );
 };
