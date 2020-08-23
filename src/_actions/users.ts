@@ -41,7 +41,7 @@ const verifyToken = (body: verifyBody): DispatchAction => ({
   request: {
     path: "/auth/login",
     method: "POST",
-    body
+    body,
   },
 });
 
@@ -49,8 +49,8 @@ const verifyEmail = (body: verifyBody): DispatchAction => ({
   types: ["VERIFY_EMAIL_REQUEST", "VERIFY_EMAIL_SUCCESS", "VERIFY_EMAIL_ERROR"],
   request: {
     path: "/auth/verify/" + body.token,
-    method: "GET"
-  }
+    method: "GET",
+  },
 });
 
 const resetPasswordEmail = (body: resetEmailBody) => ({
@@ -58,17 +58,21 @@ const resetPasswordEmail = (body: resetEmailBody) => ({
   request: {
     path: "/auth/reset",
     method: "POST",
-    body
-  }
+    body,
+  },
 });
 
 const resetPassword = (body: resetBody) => ({
-  types: ["RESET_PASSWORD_REQUEST", "RESET_PASSWORD_SUCCESS", "RESET_PASSWORD_ERROR"],
+  types: [
+    "RESET_PASSWORD_REQUEST",
+    "RESET_PASSWORD_SUCCESS",
+    "RESET_PASSWORD_ERROR",
+  ],
   request: {
     path: "/auth/reset/password",
     method: "POST",
-    body
-  }
+    body,
+  },
 });
 
 export default {
@@ -77,5 +81,5 @@ export default {
   verifyToken,
   verifyEmail,
   resetPasswordEmail,
-  resetPassword
+  resetPassword,
 };

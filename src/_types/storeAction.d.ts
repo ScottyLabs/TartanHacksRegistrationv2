@@ -1,6 +1,6 @@
 export interface StoreAction {
   type: string;
-  body: StoreActionPayload|StoreActionPayload[];
+  body: StoreActionPayload | StoreActionPayload[];
 }
 
 export interface StoreActionPayload {

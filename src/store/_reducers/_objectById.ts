@@ -1,16 +1,16 @@
-import { StoreActionPayload } from '../../_types/storeAction'
+import { StoreActionPayload } from "../../_types/storeAction";
 
-export default (state:any, array: StoreActionPayload[]) => {
-  const arrayToReturn = array.slice()
+export default (state: any, array: StoreActionPayload[]) => {
+  const arrayToReturn = array.slice();
   const objectToReturn: {
     [key: string]: {};
   } = {
-    ...state
-  }
+    ...state,
+  };
 
-  arrayToReturn.forEach(element => {
-    objectToReturn[element._id] = element
-  })
+  arrayToReturn.forEach((element) => {
+    objectToReturn[element._id] = element;
+  });
 
-  return objectToReturn
-}
+  return objectToReturn;
+};
