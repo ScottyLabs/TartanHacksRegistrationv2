@@ -94,7 +94,7 @@ const ResetEmail = () => {
 
 const PasswordForm = () => {
   const dispatch = useDispatch();
-  let { token } = useParams();
+  const { token }: any = useParams();
   const [reset, setReset] = useState(false);
 
   let body;

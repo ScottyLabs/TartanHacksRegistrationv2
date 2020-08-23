@@ -47,7 +47,7 @@
     "semantic-ui-react": "^1.2.1",
     "showdown": "^1.9.1",
     "sweetalert": "^2.1.2",
-    "typescript": "^3.9.7",
+    "typescript": "^4.0.2",
     "underscore": "^1.10.2",
     "validator": "^13.1.1",
     "yup": "^0.29.3"
