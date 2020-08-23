@@ -19,7 +19,7 @@ const dispatchVerify = async (token: string, dispatch: any) => {
 
 const Verify = () => {
   const dispatch = useDispatch();
-  let { token } = useParams();
+  let { token }: any = useParams();
   let [user, setUser] = useState(false);
 
   useEffect(() => {
