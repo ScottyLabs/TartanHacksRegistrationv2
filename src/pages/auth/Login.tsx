@@ -81,7 +81,7 @@ const Login = () => (
           No account yet? <Link to="/register">Sign Up</Link>
         </Message>
         <Message color="black">
-          <Link to="/login">Forgot Password?</Link>
+          <Link to="/reset">Forgot Password?</Link>
         </Message>
       </Grid.Column>
     </Grid>

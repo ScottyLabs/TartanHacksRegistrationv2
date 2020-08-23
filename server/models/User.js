@@ -261,7 +261,7 @@ schema.methods.generateTempAuthToken = function() {
     },
     JWT_SECRET,
     {
-      expiresInMinutes: 60
+      expiresIn: 60 * 60
     }
   );
 };
