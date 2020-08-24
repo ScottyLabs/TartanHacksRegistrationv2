@@ -2,12 +2,12 @@ import React from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import { Create, View, Team } from "./pages/team"
-import Application from './pages/Application'
-import Login from './pages/auth/Login'
-import Register from './pages/auth/Register'
-import Verify from './pages/auth/Verify'
-import { ResetEmail, ResetPassword } from './pages/auth/Reset'
+import { Create, View, Team } from "./pages/team";
+import Application from "./pages/Application";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import Verify from "./pages/auth/Verify";
+import { ResetEmail, ResetPassword } from "./pages/auth/Reset";
 
 function App() {
   return (

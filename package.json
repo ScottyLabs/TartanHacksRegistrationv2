@@ -62,7 +62,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "npx prettier --write src/**/*.{ts,js,css,html}"
+    "format": "npx prettier --write src/**/*.{tsx,ts,js,css,html}"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",

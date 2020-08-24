@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 const Team = () => {
-  return (
-    <>
-      Hello!
-    </>
-  )
+  return <>Hello!</>;
 };
 
 export default Team;

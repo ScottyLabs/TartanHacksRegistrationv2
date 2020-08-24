@@ -16,8 +16,8 @@ import "./Login.css";
 import { useDispatch } from "react-redux";
 import * as actions from "../../_actions";
 import saveAccessToken from "../../util/saveAccessToken";
-import { SemanticToastContainer } from 'react-semantic-toasts';
-import 'react-semantic-toasts/styles/react-semantic-alert.css';
+import { SemanticToastContainer } from "react-semantic-toasts";
+import "react-semantic-toasts/styles/react-semantic-alert.css";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -117,7 +117,11 @@ const SignupForm = () => {
 const Register = () => {
   return (
     <>
-      <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+      <Grid
+        textAlign="center"
+        style={{ height: "100vh" }}
+        verticalAlign="middle"
+      >
         <Grid.Column style={{ maxWidth: 350 }}>
           <SignupForm />
           <Message color="black">
