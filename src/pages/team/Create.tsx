@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from "react";
+import React, {  useEffect } from "react";
 import SideMenu from "../../components/SideMenu";
 import {
   Form,
@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../_actions";
 import { toast } from "react-semantic-toasts";
 import "react-semantic-toasts/styles/react-semantic-alert.css";
-import getCurrentUser from "../../util/getCurrentUser";
+import { getCurrentUser } from "../../util/getUser";
 
 const TeamNameSchema = Yup.object().shape({
   team_name: Yup.string()
@@ -106,7 +106,7 @@ const Create = () => {
 
   return (
     <SideMenu
-      content={
+      children={
         <Grid
           textAlign="center"
           style={{ height: "100vh" }}

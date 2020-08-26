@@ -1,8 +1,7 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import SideMenu from "../../components/SideMenu";
-import getCurrentUser from "../../util/getCurrentUser";
+import { getCurrentUser, getUserFromState } from "../../util/getUser";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../_actions";
 import { useHistory, Link } from "react-router-dom";
 import logo from "../../assets/signin-logo.png";
 import {
@@ -16,6 +15,7 @@ import {
   List,
 } from "semantic-ui-react";
 import { SemanticToastContainer } from "react-semantic-toasts";
+import { TeamProfile } from "../../components/team/TeamProfile";
 
 const TeamCreateOrJoinComponent = () => {
   return (
@@ -38,29 +38,6 @@ const TeamCreateOrJoinComponent = () => {
   );
 };
 
-const TeamMembersComponent = (props: any) => {
-  const { user } = props;
-  const team = user.team;
-  return (
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: 350 }}>
-        <Segment inverted padded className="black">
-          <Header as="h2" color="black">
-            {team.name}
-          </Header>
-          <Divider />
-          <List>
-            {team.members.map((member: any) => (
-              <List.Item>{member?.profile?.name || member.email}</List.Item>
-            ))}
-          </List>
-        </Segment>
-        <SemanticToastContainer position="bottom-right" />
-      </Grid.Column>
-    </Grid>
-  );
-};
-
 const Team = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -70,17 +47,17 @@ const Team = () => {
     getCurrentUser(dispatch, history);
   }, []);
 
-  const user = state?.data?.user;
+  const user = getUserFromState(state);
   if (!user || user?.admin || user?.employer) {
     return null;
   }
 
   if (!user.team) {
     // Show join/create team page
-    return <SideMenu content={<TeamCreateOrJoinComponent />} />;
+    return <SideMenu children={<TeamCreateOrJoinComponent />} />;
   } else {
     // Redirect to team view
-    return <SideMenu content={<TeamMembersComponent user={user} />} />;
+    return <SideMenu children={<TeamProfile user={user} />} />;
   }
 };
 

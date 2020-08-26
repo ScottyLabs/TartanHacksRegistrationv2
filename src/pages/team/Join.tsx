@@ -11,7 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { useEffect, useState } from "react";
 import * as actions from "../../_actions";
-import getCurrentUser from "../../util/getCurrentUser";
+import { getCurrentUser, getUserFromState } from "../../util/getUser";
 import SideMenu from "../../components/SideMenu";
 import { SemanticToastContainer } from "react-semantic-toasts";
 
@@ -48,7 +48,7 @@ const Join = () => {
     getCurrentUser(dispatch, history);
   }, []);
 
-  const user = state?.data?.user;
+  const user = getUserFromState(state);
   if (!user || user?.admin || user?.employer) {
     return null;
   }
@@ -60,7 +60,7 @@ const Join = () => {
 
   return (
     <SideMenu
-      content={
+      children={
         <Grid
           textAlign="center"
           style={{ height: "100vh" }}

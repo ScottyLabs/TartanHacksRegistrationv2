@@ -1,7 +1,12 @@
 import * as actions from "../_actions";
 import { Dispatch } from "redux";
 
-const getCurrentUser = async (dispatch: Dispatch<any>, history: any) => {
+export const getUserFromState = (state: any): any => {
+  const userState = state?.users || state;
+  return userState?.data?.data?.user;
+}
+
+export const getCurrentUser = async (dispatch: Dispatch<any>, history: any) => {
   try {
     const body = {
       token: window.localStorage.getItem("accessToken")
@@ -11,5 +16,3 @@ const getCurrentUser = async (dispatch: Dispatch<any>, history: any) => {
     history.push("/login");
   }
 };
-
-export default getCurrentUser;
