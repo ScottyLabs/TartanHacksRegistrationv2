@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     return res.status(404).json({ message: "Unknown user" });
   }
 
-  if (user.teamId) {
+  if (user.team) {
     return res.status(400).json({ message: "User already has a team" });
   }
 
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
       .json({ message: "Team does not exist. Create one instead?" });
   }
 
-  if (!user.teamInvitations.contains(teamId)) {
+  if (user.teamInvite != teamId) {
     return res
       .status(403)
       .json({ message: "You don't have an invite from this team" });
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
   if (team.members.length >= process.env.TEAM_MAX_SIZE) {
     return res.status(400).json({ message: "Team is already full"})
   }
-  user.teamInvitations = [];
+  delete user.teamInvite;
   user.teamCode = team.name;
   await user.save();
 

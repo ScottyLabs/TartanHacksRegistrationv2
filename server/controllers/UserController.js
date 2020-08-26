@@ -76,7 +76,7 @@ function canRegister(email, password, callback) {
  * @param  {String}   token    auth token
  * @param  {Function} callback args(err, token, user)
  */
-UserController.loginWithToken = function (token, callback) {
+UserController.loginWithToken = async function (token, callback) {
   User.getByToken(token, function (err, user) {
     return callback(err, token, user);
   });

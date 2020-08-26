@@ -2,7 +2,7 @@ const User = require("../../models/User");
 const Team = require("../../models/Team");
 
 module.exports = async (req, res) => {
-  const name = req.body.name;
+  const name = req.body.team_name;
   const id = req.params.id;
 
   if (!name) {
@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     return res.status(404).json({ message: "Unknown user" });
   }
 
-  if (user.teamCode) {
+  if (user.team) {
     return res.status(400).json({ message: "User already has a team" });
   }
 
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     members: [id],
   }).save();
 
-  user.teamId = newTeam._id;
+  user.team = newTeam._id;
   await user.save();
 
   return res.json(newTeam);

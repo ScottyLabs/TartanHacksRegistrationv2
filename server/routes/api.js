@@ -49,6 +49,8 @@ module.exports = function(router) {
     let token = getToken(req);
     let userId = req.params.id;
 
+    console.log("Token", token);
+
     UserController.getByToken(token, function(err, user){
 
       if (err || !user) {
@@ -190,7 +192,7 @@ module.exports = function(router) {
 
   router.get("/teams/:id", TeamController.getMembers);
 
-  router.get('/users/:id/team/invitations', isOwnerOrAdmin, TeamController.getInvites);
+  router.get('/users/:id/team/invitation', isOwnerOrAdmin, TeamController.getInvite);
 
   /**
    * Create a team here

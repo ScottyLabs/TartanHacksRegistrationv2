@@ -3,13 +3,15 @@ import { Sidebar, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import sidebarLogo from "../assets/sidebar-logo.svg";
 import removeAccessToken from "../util/removeAccessToken";
+import { SemanticToastContainer } from "react-semantic-toasts";
 import { useSelector } from "react-redux";
-import { getUser } from "../util/getUserFromState";
+import { getUserFromState } from "../util/getUser";
 
 const SideMenu = (props: any) => {
   const state = useSelector((state) => state);
-  const user = getUser(state);
-  const isAdmin = user?.admin ? user?.admin : false;
+  const user = getUserFromState(state);
+  const isAdmin = user?.admin || false;
+  const isEmployer = user?.employer || false;
   return (
     <Sidebar.Pushable>
       <Sidebar
@@ -31,6 +33,11 @@ const SideMenu = (props: any) => {
         {isAdmin ? (
           <Menu.Item as={Link} to="/">
             Admin
+          </Menu.Item>
+        ) : null}
+        {!isEmployer && !isAdmin ? (
+          <Menu.Item as={Link} to="/team">
+            Team
           </Menu.Item>
         ) : null}
         <Menu.Item

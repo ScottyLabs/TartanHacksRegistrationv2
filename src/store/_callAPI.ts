@@ -28,8 +28,8 @@ export default (store: any) => (next: any) => async (
   const url = `${process.env.REACT_APP_HTTP_BASE_URL}${request.path}`;
 
   const headers = {
-    "Content-Type": "application/json",
-  };
+    "x-access-token": window.localStorage.getItem("accessToken")
+  }
 
   let response;
   try {
@@ -38,9 +38,7 @@ export default (store: any) => (next: any) => async (
       url: url,
       data: request.body,
       headers: headers,
-      validateStatus: (status) => {
-        return true;
-      },
+      validateStatus: (status) => true
     });
   } catch (err) {
     console.log("Error", err);

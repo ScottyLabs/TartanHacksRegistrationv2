@@ -28,10 +28,14 @@ const LoginForm = () => {
     <Formik
       initialValues={{ email: "", password: "" }}
       onSubmit={async (values) => {
+        console.log("Submit");
         const response = await dispatch(actions.users.login(values));
         try {
           const token = response?.body?.data?.token;
+          console.log(response);
+          console.log("Received token", token);
           saveAccessToken(token);
+          console.log("Saved access token");
           history.push("/");
         } catch {
           console.log(response);

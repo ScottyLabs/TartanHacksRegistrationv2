@@ -1,4 +1,5 @@
-import React, { ReactElement } from "react";
+import React, {  useEffect } from "react";
+import SideMenu from "../../components/SideMenu";
 import {
   Form,
   Segment,
@@ -8,12 +9,15 @@ import {
   Divider,
   Image,
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import logo from "../../assets/signin-logo.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../_actions";
+import { toast } from "react-semantic-toasts";
+import "react-semantic-toasts/styles/react-semantic-alert.css";
+import { getCurrentUser } from "../../util/getUser";
 
 const TeamNameSchema = Yup.object().shape({
   team_name: Yup.string()
@@ -25,8 +29,10 @@ const TeamNameSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const TeamCreateForm = () => {
+const TeamCreateForm = (props: any) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { user } = props;
 
   return (
     <Formik
@@ -35,11 +41,18 @@ const TeamCreateForm = () => {
       onSubmit={async (values: any) => {
         try {
           await dispatch(
-            actions.teams.create("5f00fba75b467761608b44d3", values)
+            actions.teams.create(user.id, values)
           );
+          history.push("/team");
         } catch (error) {
           console.log("Error");
-          console.log(error);
+          console.log(error.message);
+          toast({
+            type: "error",
+            title: "Error",
+            description: error.message,
+            time: 5000,
+          });
         }
       }}
     >
@@ -72,16 +85,42 @@ const TeamCreateForm = () => {
   );
 };
 
-const Create = (): ReactElement => {
+const Create = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const state = useSelector((state: any) => state.users);
+
+  useEffect(() => {
+    getCurrentUser(dispatch, history);
+  }, []);
+
+  const user = state?.data?.user;
+  if (!user || user?.admin || user?.employer) {
+    return null;
+  }
+
+  if (user.teamId) {
+    history.push("/team");
+    return null;
+  }
+
   return (
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: 350 }}>
-        <TeamCreateForm />
-        <Message color="black">
-          Have a team already? <Link to="/team/join">Join Team</Link>
-        </Message>
-      </Grid.Column>
-    </Grid>
+    <SideMenu
+      children={
+        <Grid
+          textAlign="center"
+          style={{ height: "100vh" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 350 }}>
+            <TeamCreateForm user={user} />
+            <Message color="black">
+              Have a team already? <Link to="/team/join">Join Team</Link>
+            </Message>
+          </Grid.Column>
+        </Grid>
+      }
+    />
   );
 };
 
