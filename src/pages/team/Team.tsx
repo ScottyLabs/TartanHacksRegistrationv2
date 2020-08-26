@@ -11,8 +11,6 @@ import {
   Divider,
   Button,
   Image,
-  Header,
-  List,
 } from "semantic-ui-react";
 import { SemanticToastContainer } from "react-semantic-toasts";
 import { TeamProfile } from "../../components/team/TeamProfile";

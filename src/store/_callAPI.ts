@@ -66,7 +66,7 @@ export default (store: any) => (next: any) => async (
       title: response?.data.title || "Operation Failed!",
       description: response?.data.message,
       time: 10000,
-      animation: "drop"
+      animation: "drop",
     });
   }
   dispatch({ type: failureType, message: response?.statusText });

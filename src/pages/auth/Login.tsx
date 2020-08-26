@@ -16,13 +16,13 @@ import { useDispatch } from "react-redux";
 import * as actions from "../../_actions";
 import { useHistory } from "react-router-dom";
 import saveAccessToken from "../../util/saveAccessToken";
-import { SemanticToastContainer } from 'react-semantic-toasts';
-import 'react-semantic-toasts/styles/react-semantic-alert.css';
+import { SemanticToastContainer } from "react-semantic-toasts";
+import "react-semantic-toasts/styles/react-semantic-alert.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   return (
     <Formik
@@ -85,7 +85,7 @@ const Login = () => (
           No account yet? <Link to="/register">Sign Up</Link>
         </Message>
         <Message color="black">
-          <Link to="/login">Forgot Password?</Link>
+          <Link to="/reset">Forgot Password?</Link>
         </Message>
       </Grid.Column>
     </Grid>

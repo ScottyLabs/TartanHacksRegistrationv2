@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 const View = () => {
-  return (
-    <>
-      
-    </>
-  )
+  return <></>;
 };
 
 export default View;

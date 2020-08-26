@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import { Create, View, Team, Join } from "./pages/team"
-import Application from './pages/Application'
-import Login from './pages/auth/Login'
-import Register from './pages/auth/Register'
-import Verify from './pages/auth/Verify'
-import { useSelector } from "react-redux";
+import { Create, View, Team, Join } from "./pages/team";
+import Application from "./pages/Application";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import Verify from "./pages/auth/Verify";
+import { ResetEmail, ResetPassword } from "./pages/auth/Reset";
 
 function App() {
   return (
@@ -15,6 +15,12 @@ function App() {
       <Switch>
         <Route path="/verify/:token">
           <Verify />
+        </Route>
+        <Route path="/reset/:token">
+          <ResetPassword />
+        </Route>
+        <Route path="/reset">
+          <ResetEmail />
         </Route>
         <Route path="/team/create">
           <Create />

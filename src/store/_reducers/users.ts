@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import { StoreAction, StoreActionPayload } from '../../_types/storeAction';
+import { combineReducers } from "redux";
+import { StoreAction, StoreActionPayload } from "../../_types/storeAction";
 import objectById from "./_objectById";
 import replaceElementinState from "./_replaceElementinState";
 
@@ -12,7 +12,7 @@ const data = (state = {}, action: any) => {
     default:
       return state;
   }
-}
+};
 
 const didInvalidate = (state = true, action: StoreAction) => {
   switch (action.type) {
@@ -24,7 +24,7 @@ const didInvalidate = (state = true, action: StoreAction) => {
     default:
       return state;
   }
-}
+};
 
 const isFetching = (state = true, action: StoreAction) => {
   switch (action.type) {
@@ -35,10 +35,10 @@ const isFetching = (state = true, action: StoreAction) => {
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   data,
   didInvalidate,
-  isFetching
-})
+  isFetching,
+});
