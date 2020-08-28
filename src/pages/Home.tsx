@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SideMenu from "../components/SideMenu";
 import { Grid } from "semantic-ui-react";
 import DashInfo from "../components/DashInfo";
-import { useHistory } from "react-router-dom";
-import { getCurrentUser, getUserFromState } from "../util/getUser";
-import { useSelector, useDispatch } from "react-redux";
+import { getUserFromState } from "../util/getUser";
+import { useSelector } from "react-redux";
 
 interface userStatus {
   verified: boolean;
@@ -29,13 +28,6 @@ const getStatus = (user: any): userStatus | null => {
 
 const Home = () => {
   const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  useEffect(() => {
-    getCurrentUser(dispatch, history);
-  }, []);
-
   const user = getUserFromState(state);
   let userStatus = getStatus(user);
 

@@ -37,13 +37,7 @@ const TeamCreateOrJoinComponent = () => {
 };
 
 const Team = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   const state = useSelector((state: any) => state.users);
-
-  useEffect(() => {
-    getCurrentUser(dispatch, history);
-  }, []);
 
   const user = getUserFromState(state);
   if (!user || user?.admin || user?.employer) {

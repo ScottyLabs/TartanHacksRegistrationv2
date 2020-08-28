@@ -86,13 +86,8 @@ const TeamCreateForm = (props: any) => {
 };
 
 const Create = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const state = useSelector((state: any) => state.users);
-
-  useEffect(() => {
-    getCurrentUser(dispatch, history);
-  }, []);
 
   const user = state?.data?.user;
   if (!user || user?.admin || user?.employer) {
