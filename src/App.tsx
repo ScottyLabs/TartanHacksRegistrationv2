@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -13,6 +14,11 @@ import { ResetEmail, ResetPassword } from "./pages/auth/Reset";
 function App() {
   return (
     <div className="App">
+      <Helmet>
+        <title>TartanHacks Registration</title>
+        <meta charSet="utf-8" />
+        <meta name="description" content="Register for TartanHacks" />
+      </Helmet>
       <Switch>
         <Route path="/login">
           <Login />
