@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Message,
-  Segment,
-  Divider,
-} from "semantic-ui-react";
+import { Grid, Message, Segment, Divider } from "semantic-ui-react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getUserFromState } from "../../util/getUser";

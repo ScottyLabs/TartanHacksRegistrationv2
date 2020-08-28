@@ -11,7 +11,7 @@ const View = () => {
   if (!user || !(user?.admin || user?.employer)) {
     return <SideMenu />;
   }
-  
+
   return <SideMenu children={<TeamProfile user={user} />} />;
 };
 

@@ -39,9 +39,7 @@ const TeamCreateForm = (props: any) => {
       validationSchema={TeamNameSchema}
       onSubmit={async (values: any) => {
         try {
-          await dispatch(
-            actions.teams.create(user.id, values)
-          );
+          await dispatch(actions.teams.create(user.id, values));
           history.push("/team");
         } catch (error) {
           console.log("Error");
