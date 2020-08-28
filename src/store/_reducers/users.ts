@@ -1,7 +1,5 @@
 import { combineReducers } from "redux";
-import { StoreAction, StoreActionPayload } from "../../_types/storeAction";
-import objectById from "./_objectById";
-import replaceElementinState from "./_replaceElementinState";
+import { StoreAction } from "../../_types/storeAction";
 
 const data = (state = {}, action: any) => {
   switch (action.type) {

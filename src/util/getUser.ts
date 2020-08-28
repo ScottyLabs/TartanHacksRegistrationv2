@@ -7,8 +7,8 @@ export const getUserFromState = (state: any): any => {
 }
 
 export const getCurrentUser = async (dispatch: Dispatch<any>) => {
-  let accessToken;
-  if (accessToken = window.localStorage.getItem('accessToken')) {
+  let accessToken = window.localStorage.getItem('accessToken');
+  if (accessToken) {
     try {
       const body = {
         token: accessToken,

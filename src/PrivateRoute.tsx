@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from "./_actions";
 import { getUserFromState, getCurrentUser } from "./util/getUser";
 import { Redirect, Route } from "react-router-dom";
 
