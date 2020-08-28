@@ -10,5 +10,5 @@ const create = (_id: string, body: any): DispatchAction => ({
 });
 
 export default {
-  create
-}
+  create,
+};

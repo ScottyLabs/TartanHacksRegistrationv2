@@ -3,7 +3,6 @@ import { Sidebar, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import sidebarLogo from "../assets/sidebar-logo.svg";
 import removeAccessToken from "../util/removeAccessToken";
-import { SemanticToastContainer } from "react-semantic-toasts";
 import { useSelector } from "react-redux";
 import { getUserFromState } from "../util/getUser";
 

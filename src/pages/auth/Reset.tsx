@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as actions from "../../_actions";
@@ -39,9 +39,7 @@ const EmailForm = () => {
       <Formik
         initialValues={{ email: "" }}
         onSubmit={async (values) => {
-          const response = await dispatch(
-            actions.users.resetPasswordEmail(values)
-          );
+          await dispatch(actions.users.resetPasswordEmail(values));
           setSent(true);
         }}
       >

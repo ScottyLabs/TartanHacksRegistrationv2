@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React from "react";
 import SideMenu from "../../components/SideMenu";
 import {
   Form,
@@ -17,13 +17,12 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../_actions";
 import { toast } from "react-semantic-toasts";
 import "react-semantic-toasts/styles/react-semantic-alert.css";
-import { getCurrentUser } from "../../util/getUser";
 
 const TeamNameSchema = Yup.object().shape({
   team_name: Yup.string()
     .trim()
     .matches(
-      /[A-Za-z0-9\_\-\ ]+/,
+      /[A-Za-z0-9_\- ]+/,
       "Must be alphanumeric and may have spaces, hyphens, or underscores"
     )
     .required("Required"),
@@ -40,9 +39,7 @@ const TeamCreateForm = (props: any) => {
       validationSchema={TeamNameSchema}
       onSubmit={async (values: any) => {
         try {
-          await dispatch(
-            actions.teams.create(user.id, values)
-          );
+          await dispatch(actions.teams.create(user.id, values));
           history.push("/team");
         } catch (error) {
           console.log("Error");
@@ -86,13 +83,8 @@ const TeamCreateForm = (props: any) => {
 };
 
 const Create = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const state = useSelector((state: any) => state.users);
-
-  useEffect(() => {
-    getCurrentUser(dispatch, history);
-  }, []);
 
   const user = state?.data?.user;
   if (!user || user?.admin || user?.employer) {

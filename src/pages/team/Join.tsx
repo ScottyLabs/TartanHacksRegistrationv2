@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  Grid,
-  Message,
-  Segment,
-  Divider,
-  Button,
-  Image,
-} from "semantic-ui-react";
+import { Grid, Message, Segment, Divider } from "semantic-ui-react";
 import { Link, useHistory } from "react-router-dom";
-import { useSelector, useDispatch, useStore } from "react-redux";
-import { useEffect, useState } from "react";
-import * as actions from "../../_actions";
-import { getCurrentUser, getUserFromState } from "../../util/getUser";
+import { useSelector } from "react-redux";
+import { getUserFromState } from "../../util/getUser";
 import SideMenu from "../../components/SideMenu";
 import { SemanticToastContainer } from "react-semantic-toasts";
 
@@ -40,13 +31,8 @@ const TeamInviteComponent = (props: any) => {
 };
 
 const Join = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const state = useSelector((state: any) => state.users);
-
-  useEffect(() => {
-    getCurrentUser(dispatch, history);
-  }, []);
 
   const user = getUserFromState(state);
   if (!user || user?.admin || user?.employer) {

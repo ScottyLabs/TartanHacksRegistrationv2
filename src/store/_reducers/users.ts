@@ -1,12 +1,10 @@
 import { combineReducers } from "redux";
-import { StoreAction, StoreActionPayload } from "../../_types/storeAction";
-import objectById from "./_objectById";
-import replaceElementinState from "./_replaceElementinState";
+import { StoreAction } from "../../_types/storeAction";
 
 const data = (state = {}, action: any) => {
   switch (action.type) {
     case "VERIFY_TOKEN_SUCCESS":
-      return { user: action.body?.data?.user, ...action.body};
+      return { user: action.body?.data?.user, ...action.body };
     case "VERIFY_TOKEN_ERROR":
       return {};
     default:

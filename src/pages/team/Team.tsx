@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SideMenu from "../../components/SideMenu";
-import { getCurrentUser, getUserFromState } from "../../util/getUser";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { getUserFromState } from "../../util/getUser";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import logo from "../../assets/signin-logo.png";
 import {
   Grid,
@@ -37,13 +37,7 @@ const TeamCreateOrJoinComponent = () => {
 };
 
 const Team = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   const state = useSelector((state: any) => state.users);
-
-  useEffect(() => {
-    getCurrentUser(dispatch, history);
-  }, []);
 
   const user = getUserFromState(state);
   if (!user || user?.admin || user?.employer) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Image,
   Grid,
@@ -14,7 +14,7 @@ import logo from "../../assets/signin-logo.png";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import * as actions from "../../_actions";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import saveAccessToken from "../../util/saveAccessToken";
 import { SemanticToastContainer } from "react-semantic-toasts";
 import "react-semantic-toasts/styles/react-semantic-alert.css";
@@ -22,7 +22,9 @@ import "react-semantic-toasts/styles/react-semantic-alert.css";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [error, setError] = useState("");
+  const location = useLocation();
+
+  const { from }: any = location.state || { from: { pathname: "/" } };
 
   return (
     <Formik
@@ -36,7 +38,7 @@ const LoginForm = () => {
           console.log("Received token", token);
           saveAccessToken(token);
           console.log("Saved access token");
-          history.push("/");
+          history.replace(from);
         } catch {
           console.log(response);
         }

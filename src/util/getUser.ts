@@ -4,15 +4,16 @@ import { Dispatch } from "redux";
 export const getUserFromState = (state: any): any => {
   const userState = state?.users || state;
   return userState?.data?.data?.user;
-}
+};
 
-export const getCurrentUser = async (dispatch: Dispatch<any>, history: any) => {
-  try {
-    const body = {
-      token: window.localStorage.getItem("accessToken")
-    }
-    await dispatch(actions.users.verifyToken(body));
-  } catch {
-    history.push("/login");
+export const getCurrentUser = async (dispatch: Dispatch<any>) => {
+  let accessToken = window.localStorage.getItem("accessToken");
+  if (accessToken) {
+    try {
+      const body = {
+        token: accessToken,
+      };
+      await dispatch(actions.users.verifyToken(body));
+    } catch {}
   }
 };
