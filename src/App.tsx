@@ -32,7 +32,7 @@ function App() {
           <Register />
         </Route>
         <Route path="/application">
-          <Application email="richgtx@gmail.com"/>
+          <Application />
         </Route>
         <Route path="/">
           <Home />
