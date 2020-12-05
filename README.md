@@ -26,21 +26,15 @@ How to install/upgrade to latest releases:
 For inexperienced SQL users, MongoDB Compass is highly recommended. In the installation for MongoDB, is installed as an additional feature and needs to be checked.
 
 ### Deploying locally
+If you haven't already, clone the TartanHacksRegistration repository and make sure you know where it is stored on your computer. Navigate to the folder in your command prompt using cd <pathname>.
+
 Start by setting up the database. Make sure that you are in the root directory of your repository (the TartanHacksRegistration folder). 
 
-```bash
-$ mkdir db
-$ mongod --dbpath db --bind_ip 127.0.0.1
-```
-
-mongod should run in the background the entire time, so open a new window and continue with the set up.
-
-Install the necessary dependencies:
+Install the necessary dependencies and initialize the `.env` file:
 ```bash
 $ npm install
+$ npm run config
 ```
-
-If you haven't already, clone the TartanHacksRegistration repository and make sure you know where it is stored on your computer. Navigate to the folder in your command prompt using cd <pathname>.
 
 We use `dotenv` to keep track of environment variables, so be sure to stop tracking the `.env` file in Git:
 ```bash
@@ -69,10 +63,21 @@ $ n 10.16.0
 
 Edit the configuration file in `.env` for your setup, and then run the application:
 ```bash
-$ gulp server
+$ npm run dev
 ```
 
 Once the server is running, you can use the app by going to [localhost:3000](http://localhost:3000)
+
+### Editing the configuration file
+Before running locally, edit the following fields in your configuration file in `.env`:
+```
+DATABASE = 'mongodb://localhost:27017/th-registration'
+SERVER_PORT = 5000
+ROOT_URL = 'http://localhost:5000'
+REACT_APP_HTTP_BASE_URL = 'http://localhost:5000'
+```
+
+Note: if you're using this setup for your configuration file, make sure you've created a database in Mongo DB (via Compass or some other method) called `th-registration`.
 
 ### Troubleshooting
 
